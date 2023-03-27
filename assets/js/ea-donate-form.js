@@ -270,6 +270,27 @@ $(document).on('click','.description',function(){
 //   selectedGift();
 // });
 
+$(document).on('click','.edit-otheramount',function(){
+  checkFreqAndBtn();
+});
+
+$(document).on('change','.edit-otheramount',function(){
+  checkFreqAndBtn();
+});
+
+$(document).on('focus','.edit-otheramount',function(){
+  checkFreqAndBtn();
+});
+
+$(document).on('click','.label-otheramount-prefix',function(){
+  checkFreqAndBtn();
+});
+
+$(document).on('change','.label-otheramount-prefix',function(){
+  checkFreqAndBtn();
+});
+
+
 window.nvtag_callbacks.alterRequireValid.push(function(args) {
   // selectedGift()
  freq = args.val;
