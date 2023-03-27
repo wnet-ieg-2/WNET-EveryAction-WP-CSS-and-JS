@@ -1,4 +1,4 @@
-// Arturo's version
+// MWD - ea-donate-form.js
 
 var nvtag_callbacks = window.nvtag_callbacks = window.nvtag_callbacks || {};
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
