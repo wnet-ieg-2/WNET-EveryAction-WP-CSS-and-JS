@@ -1,4 +1,4 @@
-// Arturo's version
+// MWD - ea-donate-form.js
 
 var nvtag_callbacks = window.nvtag_callbacks = window.nvtag_callbacks || {};
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
@@ -269,6 +269,26 @@ $(document).on('click','.description',function(){
 // $(document).on('change','.at-gift',function(){
 //   selectedGift();
 // });
+
+$(document).on('click','.edit-otheramount',function(){
+  checkFreqAndBtn();
+});
+
+$(document).on('change','.edit-otheramount',function(){
+  checkFreqAndBtn();
+});
+
+$(document).on('focus','.edit-otheramount',function(){
+  checkFreqAndBtn();
+});
+
+$(document).on('click','.label-otheramount-prefix',function(){
+  checkFreqAndBtn();
+});
+
+$(document).on('change','.label-otheramount-prefix',function(){
+  checkFreqAndBtn();
+});
 
 window.nvtag_callbacks.alterRequireValid.push(function(args) {
   // selectedGift()
