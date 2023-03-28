@@ -290,7 +290,6 @@ $(document).on('change','.label-otheramount-prefix',function(){
   checkFreqAndBtn();
 });
 
-
 window.nvtag_callbacks.alterRequireValid.push(function(args) {
   // selectedGift()
  freq = args.val;
