@@ -1,19 +1,16 @@
 // MWD - ea-donate-form.js
-
 var nvtag_callbacks = window.nvtag_callbacks = window.nvtag_callbacks || {};
+var nvtag_callbacks = nvtag_callbacks || {};
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
 nvtag_callbacks.alterFormDefinition = nvtag_callbacks.alterFormDefinition || [];
+window.nvtag_callbacks.alterRequireValid = window.nvtag_callbacks.alterRequireValid || [];
 window.nvtag_callbacks.alterErrors = window.nvtag_callbacks.alterErrors || [];
 
 var wnePostRender = function (args) {
-
   $(".PremiumGift").append("<div id='gift-overlay'><div id='g-overlay-copy'></div></div>");
   $("#g-overlay-copy").append("<h4>For Monthly Donors</h4>")
-  // console.log( $('[id*="_NVContributionForm_"]'))
   var applyCss;
   var timeout;
-
-
   $(document).scroll(function () {
     var height = $(window).scrollTop();
     // console.log( height)
@@ -88,9 +85,7 @@ var wnePostRender = function (args) {
     }
   }
 
-
   $(document).ready(function (e) {
-    selectedButton();
     // Apply True to gift, it's not checked even when set in page builder
     $(function () {
       var $radios = $('input:radio[name=gift]');
@@ -107,70 +102,44 @@ var wnePostRender = function (args) {
     
     });
       // Modify title or Prefix and add to datalist
-  var dataList = jQuery('#at-prefixes');
-  dataList[0].options[0].value = "--Select--";
-  dataList[0].options[0].disabled = true;
-  dataList[0].options[1].value = "Mr.";
-  dataList[0].options[2].value = "Mr. & Mrs";
-  dataList[0].options[3].value = "Mr. & Mr.";
-  dataList[0].options[4].value = "Mrs. & Mrs.";
-  dataList[0].options[5].value = "Ms.";
-  var prefixAdd = ['Mrs.', 'Miss.', 'Dr.', 'Dr.& Mrs.', 'Dr. & Mr.'];
+      var dataList = jQuery('#at-prefixes');
+      var prefixAdd = ['Mrs.', 'Miss.', 'Dr.& Mrs.', 'Dr. & Mr.'];
+          dataList[0].options[1].value = "Mr.";
+          dataList[0].options[2].value = "Mr. & Mrs";
+          dataList[0].options[3].value = "Mr. & Mr.";
+          dataList[0].options[4].value = "Mrs. & Mrs.";
+          dataList[0].options[5].value = "Ms.";
 
-    $.each(prefixAdd, function (i, item) {
-      $("input[name=Prefix]").addClass('preDD');
-      $("#at-prefixes").append($("<option>").attr('value', item));
-    });
+          $.each(prefixAdd, function (i, item) {
+          $("#at-prefixes").append($("<option>").attr('value', item).text(item));
+          });
 
+          $('input[name="Prefix"]').on('input', function() {
+            var input = $(this).val().toLowerCase();
+            var options = $('#at-prefixes').find('option').map(function() {
+              return $(this).val().toLowerCase();
+            }).get();
+            if ($.inArray(input, options) === -1) {
+              $(this).val('');
+            }
+          });
+
+    selectedButton();
     callTimeout()
     callCSSStyles()
   });
 
   // Page Builder Custom Footer CTA's links for Modals 
+  function hidePageModal(){
+    $('.w3-modal').hide();
+  }
   $('span#footerCTA-1').click(function (e) { e.preventDefault(); $('div#cta-01').show(); });
   $('span#footerCTA-2').click(function (e) { e.preventDefault(); $('div#cta-02').show(); });
-  $('.w3-modal').click(function (e) { e.preventDefault(); $(this).hide(); });
-
-// console.log(selectAmount)
+  $('.w3-button').click(function (e) { e.preventDefault(); hidePageModal(); });
   return args;
 }
 
-// function addSusUpdateCheckBox(args) {
-//   _.each(args.form_definition.form_elements, function (child) {
-//     if (child.name === 'ContactInformation') {
-//       susUpdate = {
-//         name: 'SustainerUpdate',
-//         title: "I'm a current sustaining member and I'm updating my information",
-//         default_value: true,
-//         type: 'checkbox',
-//         queryString: '',
-//         checked: true,
-//         id: '_susUpdate',
-//         required: false
-//       };
-//       child.children.push(susUpdate);
-//       return;
-//     }
-//   });
-//   return args;
-// }
 
-
-// Implementation of an alterFormDefinition Callback
-// var alterFormEmailCheckBox = function (args) {
-//   console.log(args.form_definition.form_elements[5].children[11])
-//   // args.form_definition.form_elements[5].children[11].title = "Yes, I would like to receive emails from WNET/THIRTEEN";
-//   return args;
-// };
-
-nvtag_callbacks.postRender.push(wnePostRender);
-// nvtag_callbacks.alterFormDefinition.push(addSusUpdateCheckBox);
-// nvtag_callbacks.alterFormDefinition.push(alterFormEmailCheckBox);
-
-
-var nvtag_callbacks = nvtag_callbacks || {};
-nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
-window.nvtag_callbacks.alterRequireValid = window.nvtag_callbacks.alterRequireValid || [];
 var showModal = false;
 var hideGiftAdd = true;
 var freq;
@@ -195,6 +164,7 @@ $(document).on('click','#yesplease',function(e){
 });
 
 var checkFreqAndBtn = function(){
+
   setTimeout(function() {
     $("input[name=SelectAmount]").each(function () {
       if ($(this).is(':checked')) {
@@ -296,9 +266,7 @@ window.nvtag_callbacks.alterRequireValid.push(function(args) {
  return args;
 });
 
-
-window.nvtag_callbacks.alterErrors = window.nvtag_callbacks.alterErrors || [];
-
+nvtag_callbacks.postRender.push(wnePostRender);
 window.nvtag_callbacks.alterErrors.push(function (args) {
     if (args.field_name === 'SelectAmount') {
       otherAmt = args.val
