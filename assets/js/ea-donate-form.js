@@ -77,10 +77,12 @@ var wnePostRender = function (args) {
     var one_time = $("label.at-radio-label-0").children().is(':checked');
     if (one_time) {
       $("fieldset.at-fieldset.Premiums").hide();
+      $("fieldset.at-fieldset.AdditionalInformation").hide();
       $('#gift-0').click();
       $('div#gift-overlay').show();
     } else {
       $("fieldset.at-fieldset.Premiums").show();
+      $("fieldset.at-fieldset.AdditionalInformation").show();
       $('div#gift-overlay').hide();
     }
   }
