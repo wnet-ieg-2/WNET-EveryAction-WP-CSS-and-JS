@@ -121,6 +121,8 @@ label.YesSignMeUpForUpdatesForBinder {
 .at.ngp-form .label-amount input+.label-otheramount-prefix {
   padding: 3px 0 3px 10px;
   text-align: left;
+  float: left;
+  display: inline;
 }
 
 
@@ -270,7 +272,6 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
   border-radius: 0;
   color: #ffffff;
   position: relative;
-  float: left;
   text-align: center;
   top: 0;
   left: 0;
