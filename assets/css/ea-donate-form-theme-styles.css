@@ -119,10 +119,14 @@ label.YesSignMeUpForUpdatesForBinder {
 
 /* Prefix Other Input */
 .at.ngp-form .label-amount input+.label-otheramount-prefix {
-  padding: 3px 0 3px 10px;
+  padding: 3px 0 4px 10px;
   text-align: left;
   float: left;
-  display: inline;
+}
+
+.at.ngp-form .error small.error{
+  position: relative;
+  z-index: 100;
 }
 
 
@@ -268,14 +272,13 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
 
 .at.ngp-form .label-amount .edit-otheramount {
   border: none;
-  height: 45px;
+  height: 100%;
   border-radius: 0;
-  color: #ffffff;
-  position: relative;
+  /* color: #ffffff;
+  position: absolute;
   text-align: center;
   top: 0;
-  left: 0;
-  /* -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; */
+  left: 0; */
 }
 
 .edit-otheramount input[type="number"] {
