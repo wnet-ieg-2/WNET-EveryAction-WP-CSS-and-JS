@@ -269,7 +269,8 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
   height: 45px;
   border-radius: 0;
   color: #ffffff;
-  position: absolute;
+  position: relative;
+  float: left;
   text-align: center;
   top: 0;
   left: 0;
