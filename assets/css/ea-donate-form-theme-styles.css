@@ -1014,11 +1014,9 @@ fieldset.at-fieldset.AdditionalInformation legend {
 
 .AdditionalInformation {
   padding: 0 !important;
-
 }
 
-/* Embedded */
-
+/* Embedded Form Input misc */
 /* Other Amount Input */
 .at.ngp-form .label-amount .edit-otheramount {
   border: none;
@@ -1030,7 +1028,7 @@ fieldset.at-fieldset.AdditionalInformation legend {
   top: 0;
   left: 0;
 }
-
+/*  Other Amount Input Error */
 .at.ngp-form .error small.error{
   position: relative;
   z-index: 100;
