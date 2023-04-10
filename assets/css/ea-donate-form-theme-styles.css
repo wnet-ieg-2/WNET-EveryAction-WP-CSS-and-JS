@@ -828,14 +828,19 @@ div#cta-02 h4 {
   font-size: 29px;
 }
 
+/* Bullets were showing up inconsistently so I added this */
+.w3-container li:before {
+    content: "⦁ ";
+}
+
 div#cta-02 ul {
   font-size: 20px;
-  list-style-type: circle !important;
+  /* list-style-type: circle !important; */ /* This was causing the bullets to show up inconsistently */
   text-align: left;
 }
 
 div#cta-02 ul li {
-  list-style-type: disc !important;
+  /* list-style-type: disc !important; */ /* This was causing the bullets to show up inconsistently */
   padding-bottom: 10px;
 }
 
@@ -844,7 +849,6 @@ div#cta-01 a {
   color: #007DA3;
   font-weight: bold;
 }
-
 
 @media only screen and (max-width: 30em) {
   section.build-page h1 {
