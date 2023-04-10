@@ -124,11 +124,6 @@ label.YesSignMeUpForUpdatesForBinder {
   float: left;
 }
 
-.at.ngp-form .error small.error{
-  position: relative;
-  z-index: 100;
-}
-
 
 .at.ngp-form label.at-text.Prefix small {
   display: none;
@@ -268,18 +263,6 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
 /* Other */
 .at.ngp-form .edit-otheramount input[type="number"] {
   padding: 7px 10px 7px 5.5rem;
-}
-
-.at.ngp-form .label-amount .edit-otheramount {
-  border: none;
-  height: 100%;
-  border-radius: 0;
-  /* color: #ffffff;
-  position: absolute;
-  color: #ffffff;
-  text-align: center;
-  top: 0;
-  left: 0; */
 }
 
 .edit-otheramount input[type="number"] {
@@ -1022,6 +1005,8 @@ div#cta-01 a {
   }
 }
 
+/* Additional Question */
+
 fieldset.at-fieldset.AdditionalInformation legend {
   display: none;
 
@@ -1029,5 +1014,23 @@ fieldset.at-fieldset.AdditionalInformation legend {
 
 .AdditionalInformation {
   padding: 0 !important;
+}
 
+/* Embedded Form Input misc */
+/* Other Amount Input */
+.at.ngp-form .label-amount .edit-otheramount {
+  border: none;
+  height: 100%;
+  border-radius: 0;
+  color: #ffffff;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: 0;
+}
+/*  Other Amount Input Error */
+.at.ngp-form .error small.error{
+  position: relative;
+  z-index: 100;
+  margin-top: 10px;
 }
