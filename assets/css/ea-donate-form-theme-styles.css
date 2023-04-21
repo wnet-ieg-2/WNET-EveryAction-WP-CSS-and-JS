@@ -238,6 +238,18 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
   order: 8;
 }
 
+.at.ngp-form .at-fieldset.ContactInformation {
+  display: flex;
+  flex-direction: column;
+}
+
+.at.ngp-form .at-fieldset.ContactInformation label:nth-child(2) {
+  order: 1;
+}
+.at.ngp-form .at-fieldset.ContactInformation label:nth-child(3) {
+  order: 2;
+}
+
 
 .at.ngp-form label.label-amount+input[type="radio"]:checked {
   color: #ffffff;
@@ -681,9 +693,15 @@ h5#con-rec-warning {
 }
 
 /* Additional Question */
-/* .at-fieldset.AdditionalInformation legend {
+.at-fieldset.AdditionalInformation {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+.at-fieldset.AdditionalInformation legend {
   display: none;
-} */
+}
 
 /* Mobile */
 
@@ -744,7 +762,7 @@ h5#con-rec-warning {
     max-width: 100%;
     min-width: 100%;
     padding-left: 0.600rem;
-    padding-right: 0.600rem;
+    padding-right: 0.600rem;  
   }
 
   .at.ngp-form .at-fieldset.PaymentInformation {
@@ -843,6 +861,7 @@ div#cta-02 ul li {
   /* list-style-type: disc !important; */ /* This was causing the bullets to show up inconsistently */
   padding-bottom: 10px;
 }
+
 
 div#cta-02 a,
 div#cta-01 a {
@@ -1018,6 +1037,7 @@ fieldset.at-fieldset.AdditionalInformation legend {
 
 .AdditionalInformation {
   padding: 0 !important;
+
 }
 
 /* Embedded Form Input misc */
