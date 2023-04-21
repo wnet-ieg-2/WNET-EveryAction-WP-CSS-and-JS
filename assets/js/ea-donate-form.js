@@ -20,8 +20,11 @@ var wnePostRender = function (args) {
     }
   });
 
-  $("fieldset.at-fieldset.AdditionalInformation").prependTo("fieldset.at-fieldset.ContactInformation");
-
+  // Move First Checbox 
+  $("fieldset.at-fieldset.AdditionalInformation label.at-check").prependTo("fieldset.at-fieldset.ContactInformation")
+  $(".at-check").eq(0).css('margin', '0 10px');
+  $(".at-check").eq(1).css('margin', '0 10px');
+  $(".at-check").eq(2).css('margin', '0 10px');
   function callTimeout() {
     timeout = setTimeout(otherInput, 0);
   }
@@ -77,12 +80,12 @@ var wnePostRender = function (args) {
     var one_time = $("label.at-radio-label-0").children().is(':checked');
     if (one_time) {
       $("fieldset.at-fieldset.Premiums").hide();
-      $("fieldset.at-fieldset.AdditionalInformation").hide();
+      $(".at-check").eq(0).hide();
       $('#gift-0').click();
       $('div#gift-overlay').show();
     } else {
       $("fieldset.at-fieldset.Premiums").show();
-      $("fieldset.at-fieldset.AdditionalInformation").show();
+      $(".at-check").eq(0).show();
       $('div#gift-overlay').hide();
     }
   }
