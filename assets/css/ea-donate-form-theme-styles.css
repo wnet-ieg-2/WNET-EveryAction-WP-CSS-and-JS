@@ -1,17 +1,6 @@
-/* EA - THIRTEEN THEME STYLES 
-Anchor Tags: #007DA3
-Button Selected: #007DA3
-Border: ##999999
-Text Color: #000000
-*/
-
-/* 
-  THEME STYLES
-  Build Page 
-  */
+/* EA - THIRTEEN THEME STYLES */
 
 /* 2023 MWD THIRTEEN Main - THEME HEADER HTML::14410 */
-
 header#logo {
   width: 100%;
   margin: 0 auto;
@@ -22,15 +11,24 @@ header#logo {
 div.header-wrapper {
   width: 1080px;
   margin: 0 auto;
-  background-color: #000;
+  background-color: #000000;
 }
 
 header#logo img {
   width: 286px;
-  height: 50px;
+  height: auto;
   margin: 50px 30px 50px 30px;
   display: block;
 }
+
+/*************
+*************
+ 
+  THEME STYLES
+  Build Page 
+  
+*************  
+**************/
 
 /* Form - ngp-form */
 .at.ngp-form {
@@ -89,28 +87,30 @@ label.YesSignMeUpForUpdatesForBinder {
 .at.ngp-form .at-radio-label-4,
 .at.ngp-form .at-radio-label-0 {
   width: 48%;
-  color: #ffffff;
   background-color: #ffffff;
   padding: 8px 10px;
   font-size: 1.25rem;
-  border: 2px solid #999999;
   margin: 1%;
   text-align: center;
-  /* -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; */
+  color: #000000;
+  border: 2px solid #999999;
 }
 
 .at-radio-label-4>input,
 .at-radio-label-0>input {
-  /* visibility: hidden; */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* -webkit-appearance: none; */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+.freqChecked{
+  background-color: var(--button-selected-bg-color) !important;
+  color: #ffffff !important;
 }
 
 /* ********* */
@@ -124,13 +124,11 @@ label.YesSignMeUpForUpdatesForBinder {
   float: left;
 }
 
-
 .at.ngp-form label.at-text.Prefix small {
   display: none;
 }
 
 /* Prefix */
-
 .at.ngp-form .at-select .Prefix>small {
   display: none;
 }
@@ -174,35 +172,47 @@ label.YesSignMeUpForUpdatesForBinder {
   border-radius: 0px;
 }
 
-.at.ngp-form .label-amount>a:hover {
-  color: #ffffff !important;
+.at.ngp-form.label-amount>a:hover {
+  color: #ffffff ;
+}
+
+.selectAmount{
+  background: var(--amount-selected-bg);
+  border-color: var(--amount-selected-bg) !important;
+  background-color: var(--amount-selected-bg) !important;
+  color: var(--amount-selected-color) !important;
 }
 
 .at.ngp-form .at form .label-amount input:required::selection,
 .at.ngp-form .at form .label-amount input:required,
 .at.ngp-form .label-amount input:required::placeholder,
-.at form .label-amount input:required,
-.at form .label-amount input:required::selection,
-.at form .label-amount input:required::placeholder {
+.at.ngp-form .label-amount input:required,
+.at.ngp-form .label-amount input:required::selection,
+.at.ngp-form .label-amount input:required::placeholder, .at.ngp-form .label-amount.error input:required {
   color: #ffffff;
-  background: #007DA3;
-  border-color: #007DA3 !important;
-  background-color: #007DA3 !important;
+  background: var(--amount-selected-bg);
+  border-color: var(--amount-selected-bg);
+  background-color: var(--amount-selected-bg);
   font-weight: bold;
 }
 
-.at.ngp-form .label-amount:hover,
-.at.ngp-form .label-amount:hover>a,
 .at.ngp-form .label-amount input[type="radio"]:checked+a,
 .at.ngp-form .label-amount input[type="radio"]:checked+label,
 .at.ngp-form .label-amount input[type="radio"]:checked~label,
 .at.ngp-form label.label-amount+input[type="radio"]:checked {
-  border-color: #007DA3;
-  background-color: #007DA3;
+  border-color: var(--amount-selected-bg);
+  background: var(--amount-selected-bg);
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
-  color: #ffffff;
+  color: var(--amount-selected-bg) !important;
+}
+
+.at.ngp-form .label-amount:hover,
+.at.ngp-form .label-amount:hover>a, .at.ngp-form form .label-amount:hover.long {
+  color: #ffffff !important;
+  border-color: var(--amount-selected-bg);
+  background: var(--amount-selected-bg);
 }
 
 .at-fields {
@@ -210,32 +220,26 @@ label.YesSignMeUpForUpdatesForBinder {
   flex-direction: column;
 }
 
-div.at-row.Prefix.FirstName.LastName {
+.at.ngp-form .at-fieldset.ContactInformation {
+  display: flex;
+  flex-direction: column;
+}
+
+.at.ngp-form .at-fieldset.ContactInformation label:nth-child(4) {
+  order: 0;
+  margin: 0 10px;
+ }
+ 
+.at.ngp-form .at-fieldset.ContactInformation label:nth-child(2) {
+  order: 1;
+}
+.at.ngp-form .at-fieldset.ContactInformation label:nth-child(3) {
   order: 2;
 }
 
-div.at-row.at-row-solo.AddressLine1 {
-  order: 3;
-}
 
-div.at-row.Country.PostalCode.City.StateProvince {
-  order: 4;
-}
-
-div.at-row.EmailAddress.MobilePhone {
-  order: 5;
-}
-
-div.at-row.at-row-solo.at-row-full.SmsSubscribeMobilePhone {
-  order: 6;
-}
-
-div.at-row.at-row-solo.at-row-full.SmsLegalDisclaimer.at-indented {
-  order: 7;
-}
-
-div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
-  order: 8;
+.at.ngp-form input[title="Member ID"]{
+  width: 240px;
 }
 
 
@@ -245,7 +249,7 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
 
 
 .at.ngp-form .label-amount:hover {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 .at.ngp-form .label-amount,
@@ -344,14 +348,13 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
   font-weight: bold !important;
 }
 
-
 .at.ngp-form .at-gift>input[type="radio"] {
   width: 20px;
   min-width: 20px;
   height: 20px;
   min-height: 20px;
   background-color: #ffffff;
-  border: 2px solid #007DA3;
+  border: 2px solid var(--amount-selected-bg);
   -webkit-box-shadow: 0px 0px 0px 2px #ffffff inset;
   -moz-box-shadow: 0px 0px 0px 2px #ffffff inset;
   box-shadow: 0px 0px 0px 2px #ffffff inset;
@@ -362,8 +365,8 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
 }
 
 .at.ngp-form .at-gift>input[type="radio"]:checked {
-  background-color: #007DA3;
-  border: 2px solid #007DA3;
+  background: var(--amount-selected-bg);
+  border: 2px solid var(--amount-selected-bg);
   -webkit-box-shadow: 0px 0px 0px 2px #ffffff inset;
   -moz-box-shadow: 0px 0px 0px 2px #ffffff inset;
   box-shadow: 0px 0px 0px 2px #ffffff inset;
@@ -388,7 +391,7 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
   height: 20px;
   min-height: 20px;
   background-color: #ffffff;
-  border: 2px solid #007DA3;
+  border: 2px solid var(--amount-selected-bg);
   -webkit-box-shadow: 0px 0px 0px 2px #ffffff inset;
   -moz-box-shadow: 0px 0px 0px 2px #ffffff inset;
   box-shadow: 0px 0px 0px 2px #ffffff inset;
@@ -399,8 +402,8 @@ div.at-row.at-row-solo.at-row-full.YesSignMeUpForUpdatesForBinder {
 }
 
 .at-shipping-destinations input[type="radio"]:checked {
-  background-color: #007DA3;
-  border: 2px solid #007DA3;
+  background-color: var(--amount-selected-bg);
+  border: 2px solid var(--amount-selected-bg);
   -webkit-box-shadow: 0px 0px 0px 2px #ffffff inset;
   -moz-box-shadow: 0px 0px 0px 2px #ffffff inset;
   box-shadow: 0px 0px 0px 2px #ffffff inset;
@@ -417,10 +420,12 @@ div.at-radios {
   display: flex;
   flex-flow: wrap;
   margin-top: 0;
+  margin: 0 !important; 
 }
 
 div.at-radios.clearfix {
   margin-top: 0;
+  margin: 0 !important; 
 }
 
 /***** Form - ngp-form *****/
@@ -450,7 +455,7 @@ div.build-page-content p {
 }
 
 div.build-page-content p a {
-  color: #007DA3;
+  color: var(--build-page-content-anchor);
   font-weight: bold;
   text-decoration: underline;
 }
@@ -471,7 +476,7 @@ img.mainImage {
 
 .at.ngp-form .btn-at-primary {
   display: flex;
-  background-color: #007DA3;
+  background-color: var(--btn-at-primary);
   font-size: 38px;
   padding: 16px 10px;
   -webkit-border-radius: 5px;
@@ -480,6 +485,9 @@ img.mainImage {
   margin: 0 auto;
 }
 
+.at.ngp-form .btn-at-primary:hover {
+  background-color: var(--btn-at-primary-hover);
+}
 
 .at.ngp-form .at-submit {
   display: flex;
@@ -488,6 +496,11 @@ img.mainImage {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.at.ngp-form input[type=checkbox]:checked+span:before {
+  background-color: var(--btn-at-primary);
+  border-color: var(--btn-at-primary);
 }
 
 /* SUBMIT BTN */
@@ -540,7 +553,7 @@ div.footer-certified {
 /* Page Footer */
 
 /* FOOTER */
-footer#thirteen-footer {
+footer#thirteen-footer, footer#wliw-footer, footer#njpbs-footer {
   max-width: 100%;
   margin: 0 auto 0 auto;
   font-family: Arial, Helvetica, sans-serif;
@@ -556,19 +569,21 @@ div.footer-wrapper {
 }
 
 footer#thirteen-footer h5,
-footer#thirteen-footer h6 {
+footer#thirteen-footer h6, footer#wliw-footer h5,
+footer#wliw-footer h6, footer#njpbs-footer h5,
+footer#njpbs-footer h6 {
   color: #ffffff;
   text-align: center;
   padding-left: 2%;
   padding-right: 2%;
 }
 
-footer#thirteen-footer h5 {
+footer#thirteen-footer h5, footer#wliw-footer h5, footer#njpbs-footer h5 {
   font-size: 14px;
   padding: 5px 10px;
 }
 
-footer#thirteen-footer h6 {
+footer#thirteen-footer h6, footer#wliw-footer h6, footer#njpbs-footer h6 {
   font-size: 12px;
 }
 
@@ -587,10 +602,6 @@ div.copyright-wrapper {
   padding: 40px 20px;
   margin-bottom: 20px;
 }
-
-/* .wnet-thirteen{
-
-  } */
 
 .wnet-logo {
   margin-bottom: 20px;
@@ -681,9 +692,50 @@ h5#con-rec-warning {
 }
 
 /* Additional Question */
-/* .at-fieldset.AdditionalInformation legend {
+.at-fieldset.AdditionalInformation {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+.at-fieldset.AdditionalInformation legend {
   display: none;
-} */
+}
+
+button#usLBField{
+  display: none;
+  visibility: hidden;
+}
+
+div#usclb{
+
+}
+
+div.usclb{
+
+}
+
+span.decline-lb{
+
+}
+
+div.usclb-container{
+  padding: 10%;
+  background-color: #007DA3;
+}
+
+
+button.usclb-btn{
+  display: flex;
+  background-color: red;
+  font-size: 38px;
+  padding: 16px 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
 
 /* Mobile */
 
@@ -744,7 +796,7 @@ h5#con-rec-warning {
     max-width: 100%;
     min-width: 100%;
     padding-left: 0.600rem;
-    padding-right: 0.600rem;
+    padding-right: 0.600rem;  
   }
 
   .at.ngp-form .at-fieldset.PaymentInformation {
@@ -770,11 +822,12 @@ h5#con-rec-warning {
     align-items: center;
   }
 
-  .at.ngp-form div.at-radio,
+  .at.ngp-form div.at-radio,   .at.ngp-form div.at-radios,
   .at div.at-radio,
   div.at-row.SelectAmount.OtherAmount.NonRecurringButtons>div.at-radio,
   .at.ngp-form .at-radios {
     margin: 0 !important;
+    margin: 0 0 0 0 !important;
   }
 
   .at-row.SelectAmount div {
@@ -821,8 +874,6 @@ h5#con-rec-warning {
 
 @media only screen and (max-width: 70em) {}
 
-
-
 /* Modal */
 div#cta-02 h4 {
   font-size: 29px;
@@ -844,6 +895,7 @@ div#cta-02 ul li {
   padding-bottom: 10px;
 }
 
+
 div#cta-02 a,
 div#cta-01 a {
   color: #007DA3;
@@ -851,6 +903,10 @@ div#cta-01 a {
 }
 
 @media only screen and (max-width: 30em) {
+  .at.ngp-form div.build-page-content img.mainImage{
+    padding-right: 0;
+  }
+
   section.build-page h1 {
     font-size: 2em;
   }
@@ -881,7 +937,7 @@ div#cta-01 a {
   }
 
   div.footer-certified img {
-    width: 30%;
+    width: auto;
     margin: 10px;
     flex-direction: flex-start;
   }
@@ -928,7 +984,11 @@ div#cta-01 a {
   color: #000000;
 }
 
-.w3-modal {
+#passPortAlertAmount{
+  display: none;
+}
+
+.w3-modal, .wne-modal {
   z-index: 3;
   display: none;
   padding-top: 100px;
@@ -942,7 +1002,7 @@ div#cta-01 a {
   background-color: rgba(0, 0, 0, 0.4)
 }
 
-.w3-modal-content {
+.w3-modal-content, .wne-modal-content {
   margin: auto;
   background-color: #ffffff;
   position: relative;
@@ -953,13 +1013,13 @@ div#cta-01 a {
   text-align: center;
 }
 
-.w3-display-topleft {
+.w3-display-topleft, .wne-display-topleft {
   position: absolute;
   left: 0;
   top: 0;
 }
 
-.w3-display-topright {
+.w3-display-topright, .wne-display-topright {
   position: absolute;
   right: 0;
   top: -40px;
@@ -972,7 +1032,7 @@ div#cta-01 a {
   height: 30px;
 }
 
-.w3-button:hover {
+.w3-button:hover, .wne-button:hover {
   color: 007DA3 !important;
 }
 
@@ -1001,40 +1061,30 @@ div#cta-01 a {
   border-radius: 10px;
 }
 
-
-@media (forced-colors: active) {
-
-  .at.ngp-form label.label-amount+input[type="radio"]:checked {
-    color: #BD2226;
-  }
-}
-
 /* Additional Question */
-
 fieldset.at-fieldset.AdditionalInformation legend {
   display: none;
-
 }
 
 .AdditionalInformation {
   padding: 0 !important;
 }
 
-/* Embedded Form Input misc */
+/* Embedded */
 /* Other Amount Input */
 .at.ngp-form .label-amount .edit-otheramount {
   border: none;
   height: 100%;
   border-radius: 0;
   color: #ffffff;
-  position: absolute;
+  position: relative;
   text-align: center;
   top: 0;
   left: 0;
 }
-/*  Other Amount Input Error */
+
 .at.ngp-form .error small.error{
   position: relative;
   z-index: 100;
-  margin-top: 10px;
+  margin-top: 0px;
 }
