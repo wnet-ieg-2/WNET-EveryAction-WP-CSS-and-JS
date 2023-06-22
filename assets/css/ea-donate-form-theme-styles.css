@@ -1,5 +1,14 @@
 /* EA - THIRTEEN THEME STYLES */
-
+/* EA - thirteen color settings */
+:root {
+  --button-selected-bg-color: #007DA3;
+  --build-page-content-anchor: #007DA3;
+  --amount-selected-bg: #007DA3;
+  --amount-selected-color: #ffffff !important;
+  --btn-at-primary: #007DA3;
+  --btn-at-primary-hover: #2538c4;
+  
+ }
 /* 2023 MWD THIRTEEN Main - THEME HEADER HTML::14410 */
 header#logo {
   width: 100%;
@@ -1078,7 +1087,7 @@ fieldset.at-fieldset.AdditionalInformation legend {
   height: 100%;
   border-radius: 0;
   color: #ffffff;
-  position: relative;
+  position: absolute;
   text-align: center;
   top: 0;
   left: 0;
