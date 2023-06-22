@@ -60,8 +60,6 @@ var cssPostRender = function( args ) {
             $(this).val('');
           }
         }); 
-
-
     return args;
   });
 }
@@ -154,18 +152,18 @@ var selectedGift = function () {
 }
 
 var displayPremium = function () {
-  var def = args.form_definition;
-  if (def.type !== 'ContributionForm') return;
-
-  var one_time = $("label.at-radio-label-0").children().is(':checked');
-  if (one_time) {
-    $("fieldset.at-fieldset.Premiums").hide();
-    $(".at-check").eq(0).hide();
-    $('#gift-0').click(); // click to no gift
-  } else {
-    $("fieldset.at-fieldset.Premiums").show();
-    $(".at-check").eq(0).show();
-  }
+  // var def = args.form_definition;
+  $("input[name=SelectedFrequency]").each(function () {
+    // Hide First Checbox From Additional Questions
+    if ($(this)[0].value === '0' && $(this).is(':checked') ) {
+      $("fieldset.at-fieldset.Premiums").hide();
+      $(".at-check").eq(0).hide();
+      $('#gift-0').click(); // click to no gift
+    } else {
+      $("fieldset.at-fieldset.Premiums").show();
+      $(".at-check").eq(0).show();
+    }
+  });
 }
 
 
