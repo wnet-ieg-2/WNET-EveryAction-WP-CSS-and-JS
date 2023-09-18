@@ -9,6 +9,7 @@
   --btn-at-primary-hover: #2538c4;
   
  }
+ 
 /* 2023 MWD THIRTEEN Main - THEME HEADER HTML::14410 */
 header#logo {
   width: 100%;
@@ -347,11 +348,11 @@ label.YesSignMeUpForUpdatesForBinder {
   display: flex;
 }
 
-/* .at.ngp-form .at-gift{
+.at.ngp-form .at-gift{
     display: flex;
     width: 50%;
     padding: 20px;
-  } */
+  }
 
 .at.ngp-form .gift-title {
   font-weight: bold !important;
@@ -706,7 +707,6 @@ h5#con-rec-warning {
   margin-right: 20px;
 }
 
-
 .at-fieldset.AdditionalInformation legend {
   display: none;
 }
@@ -716,35 +716,100 @@ button#usLBField{
   visibility: hidden;
 }
 
-div#usclb{
-
+/* MWD USLB */
+div#uslb{
+  padding: 0px;
 }
 
-div.usclb{
-
-}
-
-span.decline-lb{
-
-}
-
-div.usclb-container{
-  padding: 10%;
-  background-color: #007DA3;
-}
-
-
-button.usclb-btn{
+div.wne-modal-uslb-wrapper{
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 10px;
   display: flex;
-  background-color: red;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.uslb-container{
+  display: flex;
+  flex-direction: row;
+  background-color: #007DA3;
+  overflow: hidden;
+  /* background-image: url('https://nvlupin.blob.core.windows.net/images/van/WNET/WNET/1/89836/images/MWD-2023/IMGS/uslb-bg.png'); */
+}
+
+div.uslb-container div{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+div.uslb-container div p.disclaimer{
+  font-size: 14px;
+  margin: 5px 20px 10px 20px;
+  text-align: left;
+  color: #ffffff;
+}
+
+div.uslb-container h3{
+  padding: 20px 20px 20px 20px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+span.decline-uslb{
+  display: flex;
+  flex-direction: row-reverse;
+
+}
+
+button#decline{
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  text-align: center;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  margin: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+button.uslb-btn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #b51f22;
+  color: #ffffff;
   font-size: 38px;
   padding: 16px 10px;
+  margin: 5px 20px;
+  padding: 6px;
+  flex-basis: fit-content;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  margin: 0 auto;
+  font-weight: bold;
+  line-height: 1.2;
 }
 
+button.uslb-btn:hover{
+  color: #b51f22
+  background-color: #ffffff;
+}
+
+button.uslb-btn small{
+  display: flex;
+ color: #ffffff;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/*  MWD USLB */
 
 /* Mobile */
 
@@ -870,12 +935,20 @@ button.usclb-btn{
     height: auto;
     max-width: 100% !important;
     margin-bottom: 20px;
+    padding: 0;
   }
 
   .at.ngp-form .btn-at-primary {
     font-size: 26px !important;
     padding: 20px !important;
     text-align: center;
+  }
+  div.uslb-container div.uslb-left{
+    width: 100%;
+  }
+
+  div.uslb-container div.uslb-right{
+    display: none;
   }
 
 }
@@ -1087,7 +1160,7 @@ fieldset.at-fieldset.AdditionalInformation legend {
   height: 100%;
   border-radius: 0;
   color: #ffffff;
-  position: absolute;
+  position: relative;
   text-align: center;
   top: 0;
   left: 0;

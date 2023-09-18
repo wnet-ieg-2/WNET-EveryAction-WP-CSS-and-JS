@@ -1,4 +1,4 @@
-// MWD - ea-donate-form.js
+// MWD - ea-donate-form.js 091823
 var nvtag_callbacks = window.nvtag_callbacks = window.nvtag_callbacks || {};
 var nvtag_callbacks = nvtag_callbacks || {};
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
@@ -6,7 +6,6 @@ nvtag_callbacks.cssPostRender = nvtag_callbacks.cssPostRender || [];
 nvtag_callbacks.alterFormDefinition = nvtag_callbacks.alterFormDefinition || [];
 window.nvtag_callbacks.alterRequireValid = window.nvtag_callbacks.alterRequireValid || [];
 window.nvtag_callbacks.alterErrors = window.nvtag_callbacks.alterErrors || [];
-window.nvtag_callbacks.onSubmit = window.nvtag_callbacks.onSubmit || [];
 window.nvtag_callbacks.postContributionAmountChanged = window.nvtag_callbacks.postContributionAmountChanged || [];
 var passPortOneTimeError = false;
 var upsellLB = true;
@@ -19,6 +18,33 @@ var hideGiftAdd = true;
 var freq;
 var otherAmt;
 var passPortOtherNum = $("input[name=OtherAmount]").val()
+
+var preFixAdjust = function(args){
+  // Prefix Modify title or Prefix and add to datalist
+  var dataList = jQuery('#at-prefixes');
+  var prefixAdd = ['Mrs.', 'Miss.', 'Dr.& Mrs.', 'Dr. & Mr.'];
+      dataList[0].options[1].value = "Mr.";
+      dataList[0].options[2].value = "Mr. & Mrs";
+      dataList[0].options[3].value = "Mr. & Mr.";
+      dataList[0].options[4].value = "Mrs. & Mrs.";
+      dataList[0].options[5].value = "Ms.";
+
+      $.each(prefixAdd, function (i, item) {
+      $("#at-prefixes").append($("<option>").attr('value', item).text(item));
+      });
+
+      $('input[name="Prefix"]').on('input', function() {
+        var input = $(this).val().toLowerCase();
+        var options = $('#at-prefixes').find('option').map(function() {
+          return $(this).val().toLowerCase();
+        }).get();
+        if ($.inArray(input, options) === -1) {
+          $(this).val('');
+        }
+      }); 
+
+    return args;
+}
 
 var cssPostRender = function( args ) {
   $(document).ready(function (e) {
@@ -34,38 +60,20 @@ var cssPostRender = function( args ) {
     $(".at-check").eq(0).css('margin', '0 10px');
     $(".at-check").eq(1).css('margin', '0 10px');
     $(".at-check").eq(2).css('margin', '0 10px');
+    $(".at-check").eq(3).css('margin', '0 28px');
+    // $(".at-check").eq(4).css('display', 'none');
     $("div.at-radio").css("margin", "0");
     $("div.at-radios.clearfix").css("margin", "0");
     $(".edit-otheramount").attr('placeholder', 'Other');
-
-    // Prefix Modify title or Prefix and add to datalist
-    var dataList = jQuery('#at-prefixes');
-    var prefixAdd = ['Mrs.', 'Miss.', 'Dr.& Mrs.', 'Dr. & Mr.'];
-        dataList[0].options[1].value = "Mr.";
-        dataList[0].options[2].value = "Mr. & Mrs";
-        dataList[0].options[3].value = "Mr. & Mr.";
-        dataList[0].options[4].value = "Mrs. & Mrs.";
-        dataList[0].options[5].value = "Ms.";
-
-        $.each(prefixAdd, function (i, item) {
-        $("#at-prefixes").append($("<option>").attr('value', item).text(item));
-        });
-
-        $('input[name="Prefix"]').on('input', function() {
-          var input = $(this).val().toLowerCase();
-          var options = $('#at-prefixes').find('option').map(function() {
-            return $(this).val().toLowerCase();
-          }).get();
-          if ($.inArray(input, options) === -1) {
-            $(this).val('');
-          }
-        }); 
+    $(".at-check").eq(3).insertBefore($(".at-form-submit"))
+    // console.log($(".at-check").eq(4))
+    // $(".at-check").eq(4).insertBefore($(".at .at-lightbox-footer-wrapper"))
     return args;
   });
 }
 
-// Frequency - One-Time or Monthly
-var SelectedFrequencyBtn = function() {
+// Frequency
+var SelectedFrequencyBtn = function(args) {
   $("input[name=SelectedFrequency]").each(function () {
     if ($(this).is(':checked')) {
       $(this).parent().addClass( "freqChecked" )
@@ -75,16 +83,19 @@ var SelectedFrequencyBtn = function() {
     // Hide First Checbox From Additional Questions
     if ($(this)[0].value === '0' && $(this).is(':checked') ) {
       $(".at-check").eq(0).css('display', 'none');
+      $(".at-check").eq(3).css('display', 'none');
     } else {
       $(".at-check").eq(0).css('display', 'block');
+      $(".at-check").eq(3).css('display', 'block');
     }
     cssPostRender();
     applySelectedColor();
     displayPremium();
+
   });
 }
 
-  var selectedButton = function(){
+  var selectedAmtBtn = function(){
     $("input[name=SelectAmount]").each(function () {
       if ($(this).is(':checked')) {
         $(this).parent().addClass( "selectAmount" ) 
@@ -151,35 +162,34 @@ var selectedGift = function () {
   }, 5);
 }
 
-var displayPremium = function () {
+var displayPremium = function(args) {
   // var def = args.form_definition;
-  $("input[name=SelectedFrequency]").each(function () {
-    // Hide First Checbox From Additional Questions
-    if ($(this)[0].value === '0' && $(this).is(':checked') ) {
-      $("fieldset.at-fieldset.Premiums").hide();
-      $(".at-check").eq(0).hide();
-      $('#gift-0').click(); // click to no gift
-    } else {
-      $("fieldset.at-fieldset.Premiums").show();
-      $(".at-check").eq(0).show();
-    }
-  });
+  // if (def.type !== 'ContributionForm') return;
+  var one_time = $("label.at-radio-label-0").children().is(':checked');
+  if (one_time) {
+    $("fieldset.at-fieldset.Premiums").hide();
+    $(".at-check").eq(0).hide();
+    $('#gift-0').click(); // click to no gift
+  } else {
+    $("fieldset.at-fieldset.Premiums").show();
+    $(".at-check").eq(0).show();
+  }
 }
 
 
 var wnePostRender = function (args) {
   $(document).on('click','.at-radio-label-0',function(){ SelectedFrequencyBtn(); });
   $(document).on('click','.at-radio-label-4',function(){ SelectedFrequencyBtn(); });
-  $(document).on('click','.label-amount',function(){ selectedButton();});  
-  $(document).on('change','.label-amount',function(){ selectedButton();});
-  $(document).on('click','.label-amount',function(){ selectedButton();});  
-  $(document).on('change','.label-amount',function(){ selectedButton();});
-  $(document).on('click','.label-otheramount',function(){ selectedButton(); });
-  $(document).on('change','.label-otheramount',function(){ selectedButton(); });
-  $(document).on('change','.edit-otheramount',function(){ selectedButton(); });
-  $(document).on('click','.edit-otheramount',function(){ selectedButton(); });
-  $(document).on('change','.edit-otheramount',function(){ selectedButton(); });
-  $(document).on('focus','.edit-otheramount',function(){ selectedButton(); });
+  $(document).on('click','.label-amount',function(){ selectedAmtBtn();});  
+  $(document).on('change','.label-amount',function(){ selectedAmtBtn();});
+  $(document).on('click','.label-amount',function(){ selectedAmtBtn();});  
+  $(document).on('change','.label-amount',function(){ selectedAmtBtn();});
+  $(document).on('click','.label-otheramount',function(){ selectedAmtBtn(); });
+  $(document).on('change','.label-otheramount',function(){ selectedAmtBtn(); });
+  $(document).on('change','.edit-otheramount',function(){ selectedAmtBtn(); });
+  $(document).on('click','.edit-otheramount',function(){ selectedAmtBtn(); });
+  $(document).on('change','.edit-otheramount',function(){ selectedAmtBtn(); });
+  $(document).on('focus','.edit-otheramount',function(){ selectedAmtBtn(); });
   // Premium Gift Options
   $(document).on('click','.at-gift',function(){ selectedGift(); });
   $(document).on('change','.at-gift',function(){ selectedGift(); });
@@ -212,9 +222,67 @@ var wnePostRender = function (args) {
 } 
 // End Post Render
 
+
+// var alterFormCheckbox = function(args) {
+  // let a = args.form_definition.form_elements;
+  // console.log(a)
+  //  _.each(a, function(child, index) {
+  //  if (child.name === 'AdditionalInformation') {
+  //     _.each(child, function(children, index) {
+  //       let c = children;
+  //       if(c[3].required === true){
+      
+  //       }
+  //     });
+  //   }
+  // });
+
+  // return args;
+// };
+
+
+window.nvtag_callbacks.alterErrors.push(function (args) {
+  var targetElement = $(".at-check").eq(3);
+  var children = targetElement.children();
+  $("input[name=SelectedFrequency]").each(function () {
+   
+    if ($(this)[0].value === '0' && $(this).is(':checked') ) {
+      $(".at-check").eq(3).hide()
+      if( !children.is(':checked') ){
+        $('input[type=submit].at-submit').prop('disabled', false);
+        $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
+        $('input.at-submit.btn-at').prop('disabled', false);
+        $(".at-check").eq(3).hide()
+
+        } else{
+          $(children).prop( "checked", false );
+         // console.log( $(children).prop( "checked", false ) )
+        $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
+        $('input.at-submit.btn-at').prop('disabled', false);
+   
+      }
+    } 
+
+    if ($(this)[0].value === '4' && $(this).is(':checked') ) {
+      if( !children.is(':checked') ){
+        $('input[type=submit].at-submit').prop('disabled', true);
+        $('input.at-submit.btn-at.btn-at-primary').prop('disabled', true);
+        $('input.at-submit.btn-at').prop('disabled', true);
+        } else{
+        $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
+        $('input.at-submit.btn-at').prop('disabled', false);
+
+      }
+    } 
+  });
+
+
+  return args;
+});
+
 // Call passPortModal with value
 window.nvtag_callbacks.alterErrors.push(function (args) {
-  // console.log(args.def)
+
   if(passPortOneTimeError === true){
     if (args.field_name === 'SelectAmount') {
       otherAmt = args.val
@@ -223,7 +291,7 @@ window.nvtag_callbacks.alterErrors.push(function (args) {
         if ($(this)[0].value === '0' && $(this).is(':checked') ) {
           $("input[name=SelectAmount]").each(function () {
             if (otherNumVal <= 59.99 ) {
-              passPortModal(otherNumVal)
+             passPortModal(otherNumVal)
             } else {
             }
           });
@@ -234,5 +302,26 @@ window.nvtag_callbacks.alterErrors.push(function (args) {
  return args;
 });
 
+
+var addLegalCopy = function () {
+  // Get 4th Checkbox
+  const targetElement = $(".at-check").eq(3);
+  // Targeting child nodes
+  const childNodes = targetElement.children();
+  // Targeting specific child nodes by index
+  const firstChild = targetElement.children().eq(0);
+
+  let emailCopy = `or emailing <a href='mailto:membership@wnet.org'>membership@wnet.org</a>.`
+  let urlAdd = `You also acknowledge and agree to the full Terms of Service located at <a href='https://www.wnet.org/about/terms-of-service/' target='_blank'>https://www.wnet.org/about/terms-of-service/</a>`
+  $(".at-check").eq(3).children()[1].innerHTML = $(".at-check").eq(3).children()[1].innerHTML + ' ' + emailCopy + ' ' + ' ' + urlAdd
+
+}
+
+
+
+
+// nvtag_callbacks.alterFormDefinition.push(alterFormCheckbox);
+nvtag_callbacks.postRender.push(preFixAdjust);
+nvtag_callbacks.postRender.push(addLegalCopy);
 nvtag_callbacks.postRender.push(wnePostRender);
 nvtag_callbacks.postRender.push(cssPostRender);
