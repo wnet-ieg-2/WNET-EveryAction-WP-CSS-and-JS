@@ -1,0 +1,10 @@
+/* EA - thirteen color settings */
+:root {
+ --button-selected-bg-color: #007DA3;
+ --build-page-content-anchor: #007DA3;
+ --amount-selected-bg: #007DA3;
+ --amount-selected-color: #ffffff !important;
+ --btn-at-primary: #007DA3;
+ --btn-at-primary-hover: #2538c4;
+ 
+}
