@@ -953,7 +953,6 @@ button.uslb-btn small{
 
 }
 
-
 @media only screen and (max-width: 70em) {}
 
 /* Modal */
@@ -1160,7 +1159,7 @@ fieldset.at-fieldset.AdditionalInformation legend {
   height: 100%;
   border-radius: 0;
   color: #ffffff;
-  position: relative;
+  position: absolute;
   text-align: center;
   top: 0;
   left: 0;
