@@ -1,4 +1,4 @@
-// MWD - ea-donate-form.js 091823
+// MWD - ea-donate-form.js 041024
 var nvtag_callbacks = window.nvtag_callbacks = window.nvtag_callbacks || {};
 var nvtag_callbacks = nvtag_callbacks || {};
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
@@ -17,7 +17,6 @@ var showModal = false;
 var hideGiftAdd = true;
 var freq;
 var otherAmt;
-var passPortOtherNum = $("input[name=OtherAmount]").val()
 
 var preFixAdjust = function(args){
   // Prefix Modify title or Prefix and add to datalist
@@ -61,13 +60,10 @@ var cssPostRender = function( args ) {
     $(".at-check").eq(1).css('margin', '0 10px');
     $(".at-check").eq(2).css('margin', '0 10px');
     $(".at-check").eq(3).css('margin', '0 28px');
-    // $(".at-check").eq(4).css('display', 'none');
     $("div.at-radio").css("margin", "0");
     $("div.at-radios.clearfix").css("margin", "0");
     $(".edit-otheramount").attr('placeholder', 'Other');
     $(".at-check").eq(3).insertBefore($(".at-form-submit"))
-    // console.log($(".at-check").eq(4))
-    // $(".at-check").eq(4).insertBefore($(".at .at-lightbox-footer-wrapper"))
     return args;
   });
 }
@@ -176,7 +172,6 @@ var displayPremium = function(args) {
   }
 }
 
-
 var wnePostRender = function (args) {
   $(document).on('click','.at-radio-label-0',function(){ SelectedFrequencyBtn(); });
   $(document).on('click','.at-radio-label-4',function(){ SelectedFrequencyBtn(); });
@@ -222,25 +217,6 @@ var wnePostRender = function (args) {
 } 
 // End Post Render
 
-
-// var alterFormCheckbox = function(args) {
-  // let a = args.form_definition.form_elements;
-  // console.log(a)
-  //  _.each(a, function(child, index) {
-  //  if (child.name === 'AdditionalInformation') {
-  //     _.each(child, function(children, index) {
-  //       let c = children;
-  //       if(c[3].required === true){
-      
-  //       }
-  //     });
-  //   }
-  // });
-
-  // return args;
-// };
-
-
 window.nvtag_callbacks.alterErrors.push(function (args) {
   var targetElement = $(".at-check").eq(3);
   var children = targetElement.children();
@@ -275,7 +251,6 @@ window.nvtag_callbacks.alterErrors.push(function (args) {
       }
     } 
   });
-
 
   return args;
 });
@@ -317,10 +292,6 @@ var addLegalCopy = function () {
 
 }
 
-
-
-
-// nvtag_callbacks.alterFormDefinition.push(alterFormCheckbox);
 nvtag_callbacks.postRender.push(preFixAdjust);
 nvtag_callbacks.postRender.push(addLegalCopy);
 nvtag_callbacks.postRender.push(wnePostRender);
