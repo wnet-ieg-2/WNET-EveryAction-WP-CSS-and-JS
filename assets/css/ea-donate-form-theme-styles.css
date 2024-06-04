@@ -9,7 +9,44 @@
   --btn-at-primary: #007DA3;
   --btn-at-primary-hover: #2538c4;
  }
- 
+
+ .st-THIRTEEN {
+  --button-selected-bg-color: #007DA3;
+  --build-page-content-anchor: #007DA3;
+  --amount-selected-bg: #007DA3;
+  --amount-selected-color: #ffffff !important;
+  --btn-at-primary: #007DA3;
+  --btn-at-primary-hover: #2538c4;
+ }
+
+ .st-WLIW {
+  --button-selected-bg-color: #007DA3;
+  --build-page-content-anchor: #007DA3;
+  --amount-selected-bg: #007DA3;
+  --amount-selected-color: #ffffff !important;
+  --btn-at-primary: #007DA3;
+  --btn-at-primary-hover: #2538c4;
+ }
+
+ .st-NJTV {
+  --button-selected-bg-color: #008A00;
+  --build-page-content-anchor: #008A00;
+  --amount-selected-bg: #008A00;
+  --amount-selected-color: #ffffff !important;
+  --btn-at-primary: #008A00;
+  --btn-at-primary-hover: #2538c4;
+ }
+
+ .allarts {
+  --button-selected-bg-color: #a40022;
+  --build-page-content-anchor:#a40022;
+  --amount-selected-bg:#a40022;
+  --amount-selected-bg-hover: #a40022;
+  --amount-selected-color: #ffffff !important;
+  --btn-at-primary: #a40022;
+  --btn-at-primary-hover: #a40022;
+ }
+
 /* 2023 MWD THIRTEEN Main - THEME HEADER HTML::14410 */
 header#logo {
   width: 100%;
