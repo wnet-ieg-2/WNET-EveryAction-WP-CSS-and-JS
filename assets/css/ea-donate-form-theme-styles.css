@@ -1,53 +1,41 @@
-/* EA - THIRTEEN THEME STYLES */
-
-/* EA - thirteen color settings */
-:root {
+.st-THIRTEEN {
   --button-selected-bg-color: #007DA3;
   --build-page-content-anchor: #007DA3;
   --amount-selected-bg: #007DA3;
   --amount-selected-color: #ffffff !important;
   --btn-at-primary: #007DA3;
   --btn-at-primary-hover: #2538c4;
- }
+}
 
- .st-THIRTEEN {
+.st-WLIW {
   --button-selected-bg-color: #007DA3;
   --build-page-content-anchor: #007DA3;
   --amount-selected-bg: #007DA3;
   --amount-selected-color: #ffffff !important;
   --btn-at-primary: #007DA3;
   --btn-at-primary-hover: #2538c4;
- }
+}
 
- .st-WLIW {
-  --button-selected-bg-color: #007DA3;
-  --build-page-content-anchor: #007DA3;
-  --amount-selected-bg: #007DA3;
-  --amount-selected-color: #ffffff !important;
-  --btn-at-primary: #007DA3;
-  --btn-at-primary-hover: #2538c4;
- }
-
- .st-NJTV {
+.st-NJTV {
   --button-selected-bg-color: #008A00;
   --build-page-content-anchor: #008A00;
   --amount-selected-bg: #008A00;
   --amount-selected-color: #ffffff !important;
   --btn-at-primary: #008A00;
   --btn-at-primary-hover: #2538c4;
- }
+}
 
- .allarts {
+.allarts {
   --button-selected-bg-color: #a40022;
-  --build-page-content-anchor:#a40022;
-  --amount-selected-bg:#a40022;
+  --build-page-content-anchor: #a40022;
+  --amount-selected-bg: #a40022;
   --amount-selected-bg-hover: #a40022;
-  --amount-selected-color: #ffffff !important;
+  --amount-selected-color: #ffffff;
+  --amount-selected-color-default: #000;
   --btn-at-primary: #a40022;
   --btn-at-primary-hover: #a40022;
- }
+}
 
-/* 2023 MWD THIRTEEN Main - THEME HEADER HTML::14410 */
 header#logo {
   width: 100%;
   margin: 0 auto;
@@ -155,9 +143,17 @@ label.YesSignMeUpForUpdatesForBinder {
   appearance: none;
 }
 
-.freqChecked{
+.at.ngp-form .at-radio-label-4:hover,
+.at.ngp-form .at-radio-label-0:hover {
+  color: #ffffff;
+  background-color: var(--amount-selected-bg-hover);
+  border: 2px solid var(--button-selected-bg-color) !important;
+}
+
+.freqChecked {
   background-color: var(--button-selected-bg-color) !important;
   color: #ffffff !important;
+  border: 2px solid var(--button-selected-bg-color) !important;
 }
 
 /* ********* */
@@ -202,65 +198,39 @@ label.YesSignMeUpForUpdatesForBinder {
 }
 
 /* .label-amount */
-.at.ngp-form form .label-amount>a,
-.at.ngp-form form .label-amount,
-.at.ngp-form form .label-amount.long {
+
+/* Styles when an amount is selected */
+.at.ngp-form .label-amount:hover,
+.at.ngp-form .label-amount:hover>a,
+.at.ngp-form .label-amount:hover.long
+.at.ngp-form .label-amount>a:hover,
+.at.ngp-form .label-amount input[type="radio"]:checked+a,
+.at.ngp-form .label-amount input[type="radio"]:checked+a label,
+.at.ngp-form .label-amount input[type="radio"]:checked~label, .at.ngp-form .label-amount input:required {
+  color: var(--amount-selected-color) !important;
+  background-color: var(--amount-selected-bg);
+  border-color: var(--amount-selected-bg);
+  /* font-weight: bold; */
+}
+
+/* Ensure that the custom properties (CSS variables) are defined */
+/*  */
+
+/* General styles for label-amount */
+.at.ngp-form .label-amount,
+.at.ngp-form .label-amount.long {
   font-size: 16px;
   line-height: 2;
 }
 
 .at.ngp-form .label-amount>a {
-  color: #000000;
   background-color: #ffffff;
-  border-color: #999999;
   border: 2px solid #999999;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
   border-radius: 0px;
 }
 
-.at.ngp-form.label-amount>a:hover {
-  color: #ffffff ;
-}
 
-.selectAmount{
-  background: var(--amount-selected-bg);
-  border-color: var(--amount-selected-bg) !important;
-  background-color: var(--amount-selected-bg) !important;
-  color: var(--amount-selected-color) !important;
-}
-
-.at.ngp-form .at form .label-amount input:required::selection,
-.at.ngp-form .at form .label-amount input:required,
-.at.ngp-form .label-amount input:required::placeholder,
-.at.ngp-form .label-amount input:required,
-.at.ngp-form .label-amount input:required::selection,
-.at.ngp-form .label-amount input:required::placeholder, .at.ngp-form .label-amount.error input:required {
-  color: #ffffff;
-  background: var(--amount-selected-bg);
-  border-color: var(--amount-selected-bg);
-  background-color: var(--amount-selected-bg);
-  font-weight: bold;
-}
-
-.at.ngp-form .label-amount input[type="radio"]:checked+a,
-.at.ngp-form .label-amount input[type="radio"]:checked+label,
-.at.ngp-form .label-amount input[type="radio"]:checked~label,
-.at.ngp-form label.label-amount+input[type="radio"]:checked {
-  border-color: var(--amount-selected-bg);
-  background: var(--amount-selected-bg);
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-  color: var(--amount-selected-bg) !important;
-}
-
-.at.ngp-form .label-amount:hover,
-.at.ngp-form .label-amount:hover>a, .at.ngp-form form .label-amount:hover.long {
-  color: #ffffff !important;
-  border-color: var(--amount-selected-bg);
-  background: var(--amount-selected-bg);
-}
+/* .lable amount */
 
 .at-fields {
   display: flex;
@@ -272,20 +242,8 @@ label.YesSignMeUpForUpdatesForBinder {
   flex-direction: column;
 }
 
-.at.ngp-form .at-fieldset.ContactInformation label:nth-child(4) {
-  order: 0;
-  margin: 0 10px;
- }
- 
-.at.ngp-form .at-fieldset.ContactInformation label:nth-child(2) {
-  order: 1;
-}
-.at.ngp-form .at-fieldset.ContactInformation label:nth-child(3) {
-  order: 2;
-}
 
-
-.at.ngp-form input[title="Member ID"]{
+.at.ngp-form input[title="Member ID"] {
   width: 240px;
 }
 
@@ -385,11 +343,11 @@ label.YesSignMeUpForUpdatesForBinder {
   display: flex;
 }
 
-.at.ngp-form .at-gift{
-    display: flex;
-    width: 50%;
-    padding: 20px;
-  }
+.at.ngp-form .at-gift {
+  display: flex;
+  width: 50%;
+  padding: 20px;
+}
 
 .at.ngp-form .gift-title {
   font-weight: bold !important;
@@ -467,12 +425,12 @@ div.at-radios {
   display: flex;
   flex-flow: wrap;
   margin-top: 0;
-  margin: 0 !important; 
+  margin: 0 !important;
 }
 
 div.at-radios.clearfix {
   margin-top: 0;
-  margin: 0 !important; 
+  margin: 0 !important;
 }
 
 /***** Form - ngp-form *****/
@@ -552,7 +510,7 @@ img.mainImage {
 
 /* SUBMIT BTN */
 
-/* Page Footer */
+/* Create Custom Footer */
 section.page-footer {
   display: flex;
   flex-direction: column;
@@ -597,27 +555,49 @@ div.footer-certified {
   margin: 0 4px 5px 0;
 }
 
+/* Create Custom Footer */
+
 /* Page Footer */
 
 /* FOOTER */
-footer#thirteen-footer, footer#wliw-footer, footer#njpbs-footer {
+div.footer-wrapper {
+  background-image: url('https://nvlupin.blob.core.windows.net/images/van/WNET/WNET/1/90116/images/2024/all_arts_dpage_theme/images/All-Arts-footer.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  max-width: 1300px;
+  margin: 0 auto 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+}
+
+footer#thirteen-footer,
+footer#wliw-footer,
+footer#njpbs-footer {
   max-width: 100%;
   margin: 0 auto 0 auto;
   font-family: Arial, Helvetica, sans-serif;
   color: #ffffff;
-  background-color: #303030;
+  background-color: #1a1a1a;
 }
 
 div.footer-wrapper {
-  max-width: 1080px;
+  /* max-width: 1080px; */
   margin: 0 auto 0 auto;
   font-family: Arial, Helvetica, sans-serif;
   color: #ffffff;
 }
 
+div.footer-main {
+  display: flex;
+}
+
 footer#thirteen-footer h5,
-footer#thirteen-footer h6, footer#wliw-footer h5,
-footer#wliw-footer h6, footer#njpbs-footer h5,
+footer#thirteen-footer h6,
+footer#wliw-footer h5,
+footer#wliw-footer h6,
+footer#njpbs-footer h5,
 footer#njpbs-footer h6 {
   color: #ffffff;
   text-align: center;
@@ -625,29 +605,17 @@ footer#njpbs-footer h6 {
   padding-right: 2%;
 }
 
-footer#thirteen-footer h5, footer#wliw-footer h5, footer#njpbs-footer h5 {
+footer#thirteen-footer h5,
+footer#wliw-footer h5,
+footer#njpbs-footer h5 {
   font-size: 14px;
   padding: 5px 10px;
 }
 
-footer#thirteen-footer h6, footer#wliw-footer h6, footer#njpbs-footer h6 {
+footer#thirteen-footer h6,
+footer#wliw-footer h6,
+footer#njpbs-footer h6 {
   font-size: 12px;
-}
-
-
-.footer-main {
-  background-color: #303030;
-  color: #ffffff;
-  display: flex;
-  padding: 40px 20px;
-  margin-bottom: 0;
-
-}
-
-div.copyright-wrapper {
-  background-color: #000;
-  padding: 40px 20px;
-  margin-bottom: 20px;
 }
 
 .wnet-logo {
@@ -664,21 +632,33 @@ div.copyright-wrapper {
 
 .footer-main h3 {
   font-size: 16px;
-  color: #919191;
+  color: #ffffff;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
 
+footer#thirteen-footer h5,
+footer#thirteen-footer h6,
+footer#wliw-footer h5,
+footer#wliw-footer h6,
+footer#njpbs-footer h5,
+footer#njpbs-footer h6,
+div.copyright-wrapper {
+  padding: 0px;
+  text-align: left;
+  background-color: none;
+}
+
 .group-links ul a {
-  color: #f2f2f2;
+  color: #ffffff;
   text-decoration: none;
   margin-bottom: 5px;
   text-transform: uppercase;
 }
 
 .group-links ul li {
-  padding-bottom: 6px;
-  font-size: 12px;
+  padding-bottom: 10px;
+  font-size: 14px;
 }
 
 #charity-logos {
@@ -696,8 +676,40 @@ div.copyright-wrapper {
 }
 
 #social-icons ul li {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 4px;
+  -webkit-border-radius: 160px;
+  -moz-border-radius: 160px;
+  border-radius: 160px;
+  border: 3px solid #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
   padding: 6px;
 }
+
+#social-icons ul li img {
+  display: block;
+  height: auto;
+}
+
+#social-icons ul li img.facebook-footer-icon {
+  max-width: 10.5px;
+  height: auto;
+}
+
+#social-icons ul li img.twitter-footer-icon,
+#social-icons ul li img.ig-footer-icon,
+#social-icons ul li img.youtube-footer-icon {
+  max-width: 17.5px;
+  height: auto;
+}
+
+
 
 /* Thankyou */
 section#thankyou {
@@ -748,17 +760,17 @@ h5#con-rec-warning {
   display: none;
 }
 
-button#usLBField{
+button#usLBField {
   display: none;
   visibility: hidden;
 }
 
 /* MWD USLB */
-div#uslb{
+div#uslb {
   padding: 0px;
 }
 
-div.wne-modal-uslb-wrapper{
+div.wne-modal-uslb-wrapper {
   max-width: 840px;
   margin: 0 auto;
   padding: 10px;
@@ -767,28 +779,28 @@ div.wne-modal-uslb-wrapper{
   justify-content: center;
 }
 
-div.uslb-container{
+div.uslb-container {
   display: flex;
   flex-direction: row;
   background-color: #007DA3;
   overflow: hidden;
-  /* background-image: url('https://nvlupin.blob.core.windows.net/images/van/WNET/WNET/1/89836/images/MWD-2023/IMGS/uslb-bg.png'); */
+
 }
 
-div.uslb-container div{
+div.uslb-container div {
   width: 50%;
   display: flex;
   flex-direction: column;
 }
 
-div.uslb-container div p.disclaimer{
+div.uslb-container div p.disclaimer {
   font-size: 14px;
   margin: 5px 20px 10px 20px;
   text-align: left;
   color: #ffffff;
 }
 
-div.uslb-container h3{
+div.uslb-container h3 {
   padding: 20px 20px 20px 20px;
   color: #ffffff;
   font-size: 24px;
@@ -796,13 +808,13 @@ div.uslb-container h3{
   margin: 0;
 }
 
-span.decline-uslb{
+span.decline-uslb {
   display: flex;
   flex-direction: row-reverse;
 
 }
 
-button#decline{
+button#decline {
   color: #ffffff;
   border: 2px solid #ffffff;
   text-align: center;
@@ -814,7 +826,7 @@ button#decline{
   height: 30px;
 }
 
-button.uslb-btn{
+button.uslb-btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -834,158 +846,179 @@ button.uslb-btn{
   line-height: 1.2;
 }
 
-button.uslb-btn:hover{
-  color: #b51f22
-  background-color: #ffffff;
+button.uslb-btn:hover {
+  color: #b51f22;
+   background-color: #ffffff;
 }
 
-button.uslb-btn small{
+button.uslb-btn small {
   display: flex;
- color: #ffffff;
+  color: #ffffff;
   font-size: 16px;
   font-weight: normal;
 }
 
 /*  MWD USLB */
-
-/* Mobile */
-
-@media only screen and (max-width: 30em) {
-
-  .at.ngp-form form .label-amount {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 6px 4px !important;
-  }
-
-  .footer-column {
-    width: 100%;
-  }
-
-}
-
 @media only screen and (max-width: 40em) {
 
   .at.ngp-form .HeaderHtml {
-    margin: 0 !important;
+      margin: 0 !important;
   }
 
   .at.ngp-form form .label-amount {
-    max-width: 46%;
-    margin: 8px 6px;
+      max-width: 46%;
+      margin: 8px 6px;
   }
 
   .at.ngp-form .at-gifts {
-    flex-direction: column;
+      flex-direction: column;
 
   }
 
   .at.ngp-form .at-gift {
-    width: 100%;
-    flex-direction: column;
+      width: 100%;
+      flex-direction: column;
   }
 
   .at.ngp-form .form-item-selectedfrequency .radios {
-    justify-content: center;
+      justify-content: center;
   }
 
   .at.ngp-form .at-form-submit,
   .at.ngp-form .FooterHtml {
-    max-width: 100%;
-    min-width: 100%;
+      max-width: 100%;
+      min-width: 100%;
   }
 
 
   .at.ngp-form .at-fieldset.ContributionInformation {
-    max-width: 100%;
-    min-width: 100%;
-    padding-left: 0.600rem;
-    padding-right: 0.600rem;
+      max-width: 100%;
+      min-width: 100%;
+      padding-left: 0.600rem;
+      padding-right: 0.600rem;
   }
 
   .at.ngp-form .at-fieldset.ContactInformation {
-    max-width: 100%;
-    min-width: 100%;
-    padding-left: 0.600rem;
-    padding-right: 0.600rem;  
+      max-width: 100%;
+      min-width: 100%;
+      padding-left: 0.600rem;
+      padding-right: 0.600rem;
   }
 
   .at.ngp-form .at-fieldset.PaymentInformation {
-    max-width: 100%;
-    min-width: 100%;
-    padding-left: 0.600rem;
-    padding-right: 0.600rem;
+      max-width: 100%;
+      min-width: 100%;
+      padding-left: 0.600rem;
+      padding-right: 0.600rem;
   }
 
   .at-shipping-destinations {
-    max-width: 100%;
-    min-width: 100%;
-    padding-left: 0.600rem;
-    padding-right: 0.600rem;
+      max-width: 100%;
+      min-width: 100%;
+      padding-left: 0.600rem;
+      padding-right: 0.600rem;
   }
 
   .at.ngp-form .label-amount:nth-child(4n+4) {
-    margin-right: 0%;
+      margin-right: 0%;
   }
 
   .at-radios {
-    justify-content: center;
-    align-items: center;
+      justify-content: center;
+      align-items: center;
   }
 
-  .at.ngp-form div.at-radio,   .at.ngp-form div.at-radios,
+  .at.ngp-form div.at-radio,
+  .at.ngp-form div.at-radios,
   .at div.at-radio,
   div.at-row.SelectAmount.OtherAmount.NonRecurringButtons>div.at-radio,
   .at.ngp-form .at-radios {
-    margin: 0 !important;
-    margin: 0 0 0 0 !important;
+      margin: 0 !important;
+      margin: 0 0 0 0 !important;
   }
 
   .at-row.SelectAmount div {
-    padding: 0 !important;
-    margin: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
   }
 
-  .footer-main {
-    flex-wrap: wrap;
+  div.footer-wrapper {
+      background-image: none;
   }
 
   .footer-column {
-    /* width: 100%; */
-    padding: 0px;
-    margin: 20px 0;
+      width: 40%;
+      padding: 0px;
+      margin: 20px;
+  }
+
+  .footer-main {
+      flex-wrap: wrap;
   }
 
   div>label>span>span.test>b,
   div>label>span>span.test>i {
-    font-weight: bolder !important;
-    font-size: 20px;
+      font-weight: bolder !important;
+      font-size: 20px;
   }
 }
 
 @media only screen and (max-width: 50em) {
+
   div.build-page-content {
-    flex-direction: column;
+      flex-direction: column;
   }
 
   .at.ngp-form div.build-page-content img.mainImage {
-    height: auto;
-    max-width: 100% !important;
-    margin-bottom: 20px;
-    padding: 0;
+      height: auto;
+      max-width: 100% !important;
+      margin-bottom: 20px;
+      padding: 0;
   }
 
   .at.ngp-form .btn-at-primary {
-    font-size: 26px !important;
-    padding: 20px !important;
-    text-align: center;
-  }
-  div.uslb-container div.uslb-left{
-    width: 100%;
+      font-size: 26px !important;
+      padding: 20px !important;
+      text-align: center;
   }
 
-  div.uslb-container div.uslb-right{
-    display: none;
+  div.uslb-container div.uslb-left {
+      width: 100%;
+  }
+
+  div.uslb-container div.uslb-right {
+      display: none;
+  }
+
+
+  div.footer-wrapper {
+      background-image: none;
+  }
+
+
+}
+
+/* Mobile */
+@media only screen and (max-width: 30em) {
+
+  .at.ngp-form form .label-amount {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 6px 4px !important;
+  }
+
+  .footer-column {
+      width: 100%;
+  }
+
+  .footer-column {
+      width: 100%;
+      padding: 0px;
+      margin: 20px;
+  }
+
+  .footer-main {
+      flex-wrap: wrap;
   }
 
 }
@@ -1000,17 +1033,19 @@ div#cta-02 h4 {
 
 /* Bullets were showing up inconsistently so I added this */
 .w3-container li:before {
-    content: "⦁ ";
+  content: "⦁ ";
 }
 
 div#cta-02 ul {
   font-size: 20px;
-  /* list-style-type: circle !important; */ /* This was causing the bullets to show up inconsistently */
+  /* list-style-type: circle !important; */
+  /* This was causing the bullets to show up inconsistently */
   text-align: left;
 }
 
 div#cta-02 ul li {
-  /* list-style-type: disc !important; */ /* This was causing the bullets to show up inconsistently */
+  /* list-style-type: disc !important; */
+  /* This was causing the bullets to show up inconsistently */
   padding-bottom: 10px;
 }
 
@@ -1023,53 +1058,53 @@ div#cta-01 a {
 
 
 @media only screen and (max-width: 30em) {
-  .at.ngp-form div.build-page-content img.mainImage{
-    padding-right: 0;
+  .at.ngp-form div.build-page-content img.mainImage {
+      padding-right: 0;
   }
 
   section.build-page h1 {
-    font-size: 2em;
+      font-size: 2em;
   }
 
   .footer-column {
-    flex-direction: column;
+      flex-direction: column;
   }
 
   div.group-links {
-    width: 100% !important;
-    padding: 20px 0;
-    margin: 0;
+      width: 100% !important;
+      padding: 20px 0;
+      margin: 0;
   }
 
   #social-icons {
-    margin: 20px 0;
+      margin: 20px 0;
   }
 
   #social-icons,
   #charity-logos {
-    width: 100%;
-    padding: 0;
-    margin: 20px 0;
+      width: 100%;
+      padding: 0;
+      margin: 20px 0;
   }
 
   div.footer-certified {
-    padding: 0;
+      padding: 0;
   }
 
   div.footer-certified img {
-    width: auto;
-    margin: 10px;
-    flex-direction: flex-start;
+      width: auto;
+      margin: 10px;
+      flex-direction: flex-start;
   }
 
   header#logo img {
-    width: 70%;
-    height: auto;
+      width: 70%;
+      height: auto;
   }
 
   header#logo {
-    width: 100%;
-    max-width: 100%;
+      width: 100%;
+      max-width: 100%;
   }
 
 }
@@ -1104,11 +1139,12 @@ div#cta-01 a {
   color: #000000;
 }
 
-#passPortAlertAmount{
+#passPortAlertAmount {
   display: none;
 }
 
-.w3-modal, .wne-modal {
+.w3-modal,
+.wne-modal {
   z-index: 3;
   display: none;
   padding-top: 100px;
@@ -1122,7 +1158,8 @@ div#cta-01 a {
   background-color: rgba(0, 0, 0, 0.4)
 }
 
-.w3-modal-content, .wne-modal-content {
+.w3-modal-content,
+.wne-modal-content {
   margin: auto;
   background-color: #ffffff;
   position: relative;
@@ -1133,13 +1170,15 @@ div#cta-01 a {
   text-align: center;
 }
 
-.w3-display-topleft, .wne-display-topleft {
+.w3-display-topleft,
+.wne-display-topleft {
   position: absolute;
   left: 0;
   top: 0;
 }
 
-.w3-display-topright, .wne-display-topright {
+.w3-display-topright,
+.wne-display-topright {
   position: absolute;
   right: 0;
   top: -40px;
@@ -1152,8 +1191,9 @@ div#cta-01 a {
   height: 30px;
 }
 
-.w3-button:hover, .wne-button:hover {
-  color: #007DA3 !important;
+.w3-button:hover,
+.wne-button:hover {
+  color: 007DA3 !important;
 }
 
 #giftSug h2 {
@@ -1197,13 +1237,13 @@ fieldset.at-fieldset.AdditionalInformation legend {
   height: 100%;
   border-radius: 0;
   color: #ffffff;
-  position: absolute;
+  position: relative;
   text-align: center;
   top: 0;
   left: 0;
 }
 
-.at.ngp-form .error small.error{
+.at.ngp-form .error small.error {
   position: relative;
   z-index: 100;
   margin-top: 0px;
@@ -1211,14 +1251,14 @@ fieldset.at-fieldset.AdditionalInformation legend {
 
 /* UpSell LB */
 
-input#toggleCheckbox{
+input#toggleCheckbox {
   width: 30px;
   height: 30px;
   border: 1px solid #000;
   background-color: #007DA3;
 }
 
-input#toggleCheckbox{
+input#toggleCheckbox {
   width: 30px;
   height: 30px;
   border: 1px solid #000;
@@ -1226,8 +1266,16 @@ input#toggleCheckbox{
   cursor: pointer;
 }
 
-input#toggleCheckbox:hover{
+input#toggleCheckbox:hover {
   border: 1px solid #007DA3;
   background-color: #007DA3;
   cursor: pointer;
+}
+
+/* Your donation will be securely processed. */
+.at.ngp-form .at-markup.secure-processing-single-step-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: none;
 }
