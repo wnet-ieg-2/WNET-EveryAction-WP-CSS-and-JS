@@ -1,9 +1,41 @@
-// MWD - 07/11/2024
+/******************
+******************
+******************
+***
+*** MWD - 07/11/2024
+***
+******************
+******************
+******************/
+
 var nvtag_callbacks = nvtag_callbacks || {};
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
 window.nvtag_callbacks.alterErrors = window.nvtag_callbacks.alterErrors || [];
 window.nvtag_callbacks.alterRequireValid = window.nvtag_callbacks.alterRequireValid || [];
-window.nvtag_callbacks.postContributionAmountChanged = window.nvtag_callbacks.postContributionAmountChanged || [];
+
+let formID = null;
+let additionalChildren = [];
+
+// Get FormID for Additional Questions
+const getFormId = function(args){
+  // console.log(args)
+  if (args && args.form_definition ) {
+     formID = args.form_definition.formId;
+  }
+  return args;
+};
+
+// Get Additional Questions
+const getAdditionalQuestions = function (args){
+  // First pass: Collect children from AdditionalInformation
+  _.each(args.form_definition.form_elements, function (child) {
+    if (child.name === 'AdditionalInformation') {
+      // Store children of AdditionalInformation
+      additionalChildren = child.children.slice(); // Use slice to copy the array
+    }
+  });
+}
+
 
 // Assign theme color to the selected amount button
 const selectedAmtBtn = function () {
@@ -223,7 +255,7 @@ const moveBeConnectedField = function(args){
   return args;
 };
 
-const updateAutoRenewalSubscriptionCopy = function (args) {
+const updateAutoRenewalSubscriptionLabel = function (args) {
   // Update the text for the auto renewal subscription
   let formID;
   let additionalChildren = []; // Temporary array to store children from AdditionalInformation
@@ -249,28 +281,15 @@ const updateAutoRenewalSubscriptionCopy = function (args) {
   return args;
 };
 
+
+
 // Handle Auto Renewal Subscription Checkbox
-window.nvtag_callbacks.alterRequireValid.push(function (args) {
- 
-  // let formID;
-  // let additionalChildren = []; // Temporary array to store children from AdditionalInformation
-  // if (args && args.form_definition ) {
-  //   formID = args.form_definition.formId;
-  // }
-
-  // _.each(args.form_definition.form_elements, function (child) {
-  //   if (child.name === 'AdditionalInformation') {
-  //     // Store children of AdditionalInformation
-  //     additionalChildren = child.children.slice(); // Use slice to copy the array
-  //   }
-  // });
-
-      // console.log(formID)
-    // console.log(additionalChildren[3])
-    // console.log(additionalChildren[3].name)
-    // console.log(additionalChildren[3].title)
-    // console.log(beConnected)
-
+window.nvtag_callbacks.alterRequireValid.push(function (args) { 
+  //  console.log(args.val)
+  //  console.log(args.field_name)
+  //  console.log(args.require_valid)
+  //  console.log(args.form_def)
+  $(document).ready(function (){ 
   // console.log(args)
   // let autoRenewalSubscriptionCheckbox = $('input[name=' + additionalChildren[4].name + ']').closest('.at-row');
   // let fieldSet = autoRenewalSubscriptionCheckbox.children();
@@ -296,7 +315,7 @@ window.nvtag_callbacks.alterRequireValid.push(function (args) {
   //     }
   //   }
 
-  // })
+  // });
 
   // function handleCheckBox() {
   //   let isChecked = $(this)[0].children[0].checked;
@@ -308,22 +327,55 @@ window.nvtag_callbacks.alterRequireValid.push(function (args) {
   // }
 
   // $('label.' + additionalChildren[4].name).on('click', handleCheckBox)
-  console.log(args)
-  return args;
-})
 
+  //  console.log(autoRenewalSubscriptionCheckbox)
+  //  console.log(fieldSet)
+    if(args.field_name === 'SelectedFrequency'){
+      // let autoRenewalSubscriptionCheckbox = $('input[name=' + additionalChildren[4].name + ']').closest('.at-row');
+      let autoRenewalSubscriptionCheckbox =  $('.'+ additionalChildren[4].name);
+      let fieldSet = autoRenewalSubscriptionCheckbox.children();
+      if (fieldSet[0]) {
+        if (args.val === '0') {
+          fieldSet[0].style.display = 'none';
+          fieldSet[0].children[0].checked = false; // Uncheck the checkbox
+          $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
+        } else if (args.val === '4') {
+          fieldSet[0].style.display = 'block';
+          if (fieldSet[0].children[0].checked === false) {
+            $('input.at-submit.btn-at.btn-at-primary').prop('disabled', true);
+          }
+        }
+      }
+    }
+
+   console.log(formID)
+   console.log(additionalChildren[4].name)
+   console.log(additionalChildren[4].required)
+   console.log(additionalChildren[4])
+  //  console.log(args.form_def);
+   console.log(args.form_def.name);
+   
+   console.log(args.form_def.default_value);
+  }); // End of document ready
+
+  return args;
+});
+
+
+
+// FormID
+nvtag_callbacks.postRender.push(getFormId);
+
+// Array for Additional Questions
+nvtag_callbacks.postRender.push(getAdditionalQuestions);
+
+// Additional Questons
 nvtag_callbacks.postRender.push(moveBeConnectedField);
 nvtag_callbacks.postRender.push(moveReceiveTextsField);
 nvtag_callbacks.postRender.push(moveRecieveEmailsField);
 nvtag_callbacks.postRender.push(moveSustainerMemberField);
-nvtag_callbacks.postRender.push(updateAutoRenewalSubscriptionCopy);
+nvtag_callbacks.postRender.push(updateAutoRenewalSubscriptionLabel);
 
-// nvtag_callbacks.postRender.push(addAutoRenewalSubscriptionCopy);
-// nvtag_callbacks.alterFormDefinition.push(getAdditionalQuestions);
-// nvtag_callbacks.alterFormDefinition.push(moveSustainerMemberField);
-// nvtag_callbacks.alterFormDefinition.push(moveBeConnectedField);
-// nvtag_callbacks.alterFormDefinition.push(moveReceiveTextsField);
-// nvtag_callbacks.alterFormDefinition.push(addReceiveEmailsField);
 
 // Show Passport Alert Amount Alert for One-Time Donation
 const passPortAlertAmount = function (amnt) {
@@ -346,7 +398,6 @@ const passPortAlertAmount = function (amnt) {
     });
   }
 }
-
 
 // Call passPortAlertAmount for Other OT value
 window.nvtag_callbacks.alterErrors.push(function (args) {
