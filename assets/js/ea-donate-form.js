@@ -2,7 +2,7 @@
 ******************
 ******************
 ***
-*** MWD - 07/11/2024
+*** MWD - 07/12/2024
 ***
 ******************
 ******************
@@ -51,25 +51,22 @@ const selectedAmtBtn = function () {
 };
 
 // listeners for selectedAmtBtn
-const applyDefault = function (args) {
+const applySelectedAmtBtn = function (args) {
   $(document).ready(function (e) {
     // Overwrite Place Holder = Other
     $(".edit-otheramount").attr('placeholder', 'Other'); 
     // selectedAmtBtn = applys the white color for buttons
-    $(document).on('click', '.label-amount', function () { selectedAmtBtn();});
-    $(document).on('change', '.label-amount', function () { selectedAmtBtn();});
-    $(document).on('click', '.label-amount', function () { selectedAmtBtn();});
-    $(document).on('change', '.label-amount', function () { selectedAmtBtn();});
-    $(document).on('click', '.label-otheramount', function () { selectedAmtBtn();});
-    $(document).on('change', '.label-otheramount', function () { selectedAmtBtn();});
-    $(document).on('change', '.edit-otheramount', function () { selectedAmtBtn();});
-    $(document).on('click', '.edit-otheramount', function () { selectedAmtBtn();});
-    $(document).on('change', '.edit-otheramount', function () { selectedAmtBtn();});
-    $(document).on('focus', '.edit-otheramount', function () { selectedAmtBtn();});
     selectedAmtBtn();
-    return args;
+
+    const updateSelectedAmtBtn = () => {
+      selectedAmtBtn();
+  };
+
+  $(document).on('click change', '.label-amount, .label-otheramount, .edit-otheramount', updateSelectedAmtBtn);
+  $(document).on('focus', '.edit-otheramount', updateSelectedAmtBtn);
+
   });
-  
+  return args;
 };
 
 // Adjust Prefix Field List
@@ -100,7 +97,7 @@ const initpostRender = function (args) {
         $('input[name="SelectedFrequency"]').each(function () {
           if ($(this).is(':checked')) {
             $(this).parent('label').addClass("freqChecked");
-            applyDefault(args);
+            applySelectedAmtBtn(args);
           } else {
             $(this).parent('label').removeClass("freqChecked");
           }
@@ -116,6 +113,12 @@ const initpostRender = function (args) {
   });
   return args;
 };
+
+// FormID
+nvtag_callbacks.postRender.push(getFormId);
+
+// Array for Additional Questions
+nvtag_callbacks.postRender.push(getAdditionalQuestions);
 
 // nvtag_callbacks.postRender
 nvtag_callbacks.postRender.push(editPrefix);
@@ -137,7 +140,7 @@ const moveSustainerMemberField = function (args) {
   });
 
   $(document).ready(function (){
-    let sustainerMember = $('.'+ additionalChildren[0].name);
+    let sustainerMember = $('.at-row.at-row-full.'+ additionalChildren[0].name);
     let prefixField = $('input[name="Prefix"]').closest('.at-row');
 
     if (sustainerMember.length && prefixField.length) {
@@ -186,7 +189,7 @@ const moveRecieveEmailsField = function(args){
   });
 
   $(document).ready(function (){
-    let receiveEmails = $('.'+ additionalChildren[1].name);
+    let receiveEmails = $('.at-row.at-row-full.'+ additionalChildren[1].name);
     let targetField = $('#NVContributionForm' + formID + '-ContactInformation .at-fields');
 
     if (receiveEmails.length && targetField.length) {
@@ -212,7 +215,7 @@ const moveReceiveTextsField = function(args){
   });
 
   $(document).ready(function (){
-    let receiveTexts = $('.'+ additionalChildren[2].name);
+    let receiveTexts = $('.at-row.at-row-full.'+ additionalChildren[2].name);
     let targetField = $('#NVContributionForm' + formID + '-ContactInformation .at-fields');
 
     if (receiveTexts.length && targetField.length) {
@@ -239,22 +242,18 @@ const moveBeConnectedField = function(args){
   });
 
   $(document).ready(function (){
-    let beConnected = $('.'+ additionalChildren[3].name);
+    let beConnected = $('.at-row.at-row-full.'+ additionalChildren[3].name);
     let targetField = $('#NVContributionForm' + formID + '-ContactInformation .at-fields');
 
     if (beConnected.length && targetField.length) {
         beConnected.insertAfter(targetField);
      }
-    // console.log(formID)
-    // console.log(additionalChildren[3])
-    // console.log(additionalChildren[3].name)
-    // console.log(additionalChildren[3].title)
-    // console.log(beConnected)
   }); // End of document ready
 
   return args;
 };
 
+// Update the text for the auto renewal subscription
 const updateAutoRenewalSubscriptionLabel = function (args) {
   // Update the text for the auto renewal subscription
   let formID;
@@ -281,55 +280,9 @@ const updateAutoRenewalSubscriptionLabel = function (args) {
   return args;
 };
 
-
-
 // Handle Auto Renewal Subscription Checkbox
 window.nvtag_callbacks.alterRequireValid.push(function (args) { 
-  //  console.log(args.val)
-  //  console.log(args.field_name)
-  //  console.log(args.require_valid)
-  //  console.log(args.form_def)
   $(document).ready(function (){ 
-  // console.log(args)
-  // let autoRenewalSubscriptionCheckbox = $('input[name=' + additionalChildren[4].name + ']').closest('.at-row');
-  // let fieldSet = autoRenewalSubscriptionCheckbox.children();
-
-  // $("input[name=SelectedFrequency]").each(function () {
-  //   // One-Time
-  //   if ($(this)[0].value === '0' && $(this).is(':checked')) {
-  //     if (fieldSet[0]) {
-  //     let fieldStatus = fieldSet[0].children[0].checked;
-  //       fieldSet[0].style.display = 'none';
-  //       fieldSet[0].children[0].checked = false; // Uncheck the checkbox
-  //       $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
-  //       }
-  //   }
-  //   // Monthly
-  //   if ($(this)[0].value === '4' && $(this).is(':checked')) {
-  //     if (fieldSet[0]) {
-  //     let fieldStatus = fieldSet[0].children[0].checked;
-  //         fieldSet[0].style.display = 'block';
-  //       if(fieldStatus === false) {
-  //        $('input.at-submit.btn-at.btn-at-primary').prop('disabled', true);
-  //       }
-  //     }
-  //   }
-
-  // });
-
-  // function handleCheckBox() {
-  //   let isChecked = $(this)[0].children[0].checked;
-  //   if (isChecked === false) {
-  //     $('input.at-submit.btn-at.btn-at-primary').prop('disabled', true);
-  //   } else {
-  //     $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
-  //   }
-  // }
-
-  // $('label.' + additionalChildren[4].name).on('click', handleCheckBox)
-
-  //  console.log(autoRenewalSubscriptionCheckbox)
-  //  console.log(fieldSet)
     if(args.field_name === 'SelectedFrequency'){
       // let autoRenewalSubscriptionCheckbox = $('input[name=' + additionalChildren[4].name + ']').closest('.at-row');
       let autoRenewalSubscriptionCheckbox =  $('.'+ additionalChildren[4].name);
@@ -348,26 +301,21 @@ window.nvtag_callbacks.alterRequireValid.push(function (args) {
       }
     }
 
-   console.log(formID)
-   console.log(additionalChildren[4].name)
-   console.log(additionalChildren[4].required)
-   console.log(additionalChildren[4])
-  //  console.log(args.form_def);
-   console.log(args.form_def.name);
-   
-   console.log(args.form_def.default_value);
+    function handleCheckBox() {
+      let isChecked = $(this)[0].children[0].checked;
+      if (isChecked === false) {
+        $('input.at-submit.btn-at.btn-at-primary').prop('disabled', true);
+      } else {
+        $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
+      }
+    }
+  
+    $('label.' + additionalChildren[4].name).on('click', handleCheckBox)
+
   }); // End of document ready
 
   return args;
 });
-
-
-
-// FormID
-nvtag_callbacks.postRender.push(getFormId);
-
-// Array for Additional Questions
-nvtag_callbacks.postRender.push(getAdditionalQuestions);
 
 // Additional Questons
 nvtag_callbacks.postRender.push(moveBeConnectedField);
