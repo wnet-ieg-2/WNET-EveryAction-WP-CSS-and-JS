@@ -2,7 +2,7 @@
 *******
 *******
 2024-MWD-WNET-EveryActiopn-Main-Theme: CSS - ea-donate-form-theme-styles.css
-07-19-2024
+07-24-2024
 *******
 ******
 */
@@ -113,6 +113,10 @@ header#logo img {
 }
 
 .at.ngp-form .at-form-submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 540px;
   min-width: 540px;
   padding: 2.625rem 1.625rem;
@@ -651,6 +655,10 @@ div.copyright-wrapper {
   text-transform: uppercase;
 }
 
+.group-links ul{
+  padding: 0;
+}
+
 .group-links ul a {
   color: #f2f2f2;
   text-decoration: none;
@@ -675,6 +683,7 @@ div.copyright-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 #social-icons ul li {
