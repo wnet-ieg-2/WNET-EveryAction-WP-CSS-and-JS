@@ -92,5 +92,5 @@ const initpostRender = function (args) {
 };
 
 // nvtag_callbacks.postRender
-nvtag_callbacks.postRender.push(editPrefix);
+// nvtag_callbacks.postRender.push(editPrefix);
 nvtag_callbacks.postRender.push(initpostRender);
