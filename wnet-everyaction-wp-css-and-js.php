@@ -2,7 +2,7 @@
 /*
 Plugin Name: WNET EveryAction WP CSS and JS 
 Description: A container to maintain the custom JS and CSS for embedded EveryAction forms on WNET sites
-Version: 2023.03.23
+Version: 2024.12.12
 Authors: WNET Digital (plugin), MWD (JS and CSS)
 */
 
@@ -27,6 +27,14 @@ class WNET_EveryAction_WP_CSS_and_JS {
     wp_register_script( $this->token . '_js' , $this->assets_url . 'js/ea-donate-form.js', array('jquery'), $this->version, true );
     wp_enqueue_script( $this->token . '_js' );
     wp_enqueue_style( $this->token . '_css', $this->assets_url . 'css/ea-donate-form-theme-styles.css', null, $this->version);
+
+	// enqueue the pledge shim on one specific form
+	if ( is_singular('contribute')) {
+        global $post;
+		if ('premium-checkout' == $post->post_name) {
+            wp_enqueue_script('everyaction_pledge_shim',$this->assets_url . 'js/everyaction_pledge_shim.js', array('jquery','js-cookie'), $this->version, true);
+		}
+	}
   }
 
 

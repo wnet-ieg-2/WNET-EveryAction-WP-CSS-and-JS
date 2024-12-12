@@ -51,7 +51,6 @@
 				current_frequency = $(this).val();
 			}
 		});
-		set_required_amount();
 	}
 
 	function set_required_amount() {
@@ -68,7 +67,18 @@
         } else {
             $("input[name='OtherAmount']").val(required_donation_amount);
         }
+		$("input[name='OtherAmount']").focus();
 	}
+
+	/* TK;  A function to compare the required_donation_amount value
+	 * (or if frequency is 4, required_installment_amount value)
+	 * to each of the visible giving levels and disable any that are 
+	 * less than that value. 
+	 */
+
+
+	/* TK: a function to to clear the shopping_cart cookie on successful form donation
+	*/
 
 	let initialize_form_when_ready = function () {
 		if (!$("input[title='PCodes']").length) {
@@ -79,6 +89,7 @@
 			update_pcode_and_premium_and_value_fields();
 			$('input[name="SelectedFrequency"]').on('change click', function () {
 				check_frequency();
+				set_required_amount();
 			});
 		}
 
