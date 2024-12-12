@@ -4,9 +4,6 @@
  * to store that info and pass it along to the EA backend
  */
 
-jQuery(document).ready(function($) {
-
-
 	var shopping_cart = Cookies.get('shopping_cart');
     if (typeof shopping_cart !== 'undefined') { shopping_cart = JSON.parse( shopping_cart ); }
     else { shopping_cart = []; }
@@ -21,9 +18,9 @@ jQuery(document).ready(function($) {
 	function setup_pcode_and_premium_fields() {
 		pcode_field = $("input[title='PCodes']");
 		premium_field = $("textarea[title='Your Selected Premiums']");
-		$(pcode_field).parent().hide();
-		$(premium_field).parent().hide();
-		$(premium_field).parent().parent().append('<div class="premium_list"></div>');
+		$(pcode_field).parent().parent().hide();
+		$(premium_field).parent().parent().hide();
+		$(premium_field).parent().parent().parent().append('<div class="premium_list"></div>');
 	}
 
 
@@ -86,10 +83,7 @@ jQuery(document).ready(function($) {
 		}
 
 	}
-	//setTimeout(initialize_form_when_ready, 100);
-	
-	nvtag_callbacks = nvtag_callbacks || {};
+
+	var nvtag_callbacks = nvtag_callbacks || {};
 	nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
 	nvtag_callbacks.postRender.push(initialize_form_when_ready);
-	
-});
