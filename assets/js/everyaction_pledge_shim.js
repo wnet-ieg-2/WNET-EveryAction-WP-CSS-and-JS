@@ -64,8 +64,10 @@
 		console.log(current_frequency);
 		if (current_frequency == 4) {
             $("input[name='OtherAmount']").val(required_installment_amount);
+			$("span.required_contribution").html(required_installment_amount + " per month for 12 months");
         } else {
             $("input[name='OtherAmount']").val(required_donation_amount);
+			$("span.required_contribution").html(required_donation_amount);
         }
 		$("input[name='OtherAmount']").focus();
 	}
