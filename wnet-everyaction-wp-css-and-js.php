@@ -2,7 +2,7 @@
 /*
 Plugin Name: WNET EveryAction WP CSS and JS 
 Description: A container to maintain the custom JS and CSS for embedded EveryAction forms on WNET sites
-Version: 2024.12.12
+Version: 2024.12.18
 Authors: WNET Digital (plugin), MWD (JS and CSS)
 */
 
@@ -14,7 +14,7 @@ class WNET_EveryAction_WP_CSS_and_JS {
   public $version;
 
   public function __construct() {
-    $this->version = '2024.12.05'; 
+    $this->version = '2024.12.18'; 
     /* use today's date in the line above in 'xxxx.xx.xx' format to make sure CloudFront is using this version. 
      * If including the script elsewhere, it is generally best to also include that date as a query string
     */   
