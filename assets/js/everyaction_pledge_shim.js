@@ -6,7 +6,9 @@
 
 	var shopping_cart = Cookies.get('shopping_cart');
     if (typeof shopping_cart !== 'undefined') { shopping_cart = JSON.parse( shopping_cart ); }
-    else { shopping_cart = []; }
+    else { 
+		shopping_cart = []; 
+		}
 
 	var required_donation_amount = 0;
 	var required_installment_amount = 0;
@@ -26,6 +28,8 @@
 
 	function update_pcode_and_premium_and_value_fields() {
 		if (shopping_cart.length == 0) {
+			// this shouldn't ever come up but JIC
+			$('.premium_list').html('<h4>Your shopping cart is empty: <em><a href="/support/pledge-premiums/">Return to premium list</a></em></h4>');
 			return;
 		}
 		var pcodestring = '';
