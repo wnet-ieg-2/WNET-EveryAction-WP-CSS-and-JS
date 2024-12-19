@@ -55,29 +55,27 @@
 
 	function set_required_amount() {
 		if (!required_donation_amount) {
+			console.log('no req amt set');
 			return;
 		}
 		required_installment_amount = (required_donation_amount/12);
 		required_installment_amount = Math.round((required_installment_amount + Number.EPSILON) * 100) / 100;
-		console.log(required_installment_amount);
-		console.log(required_donation_amount);
-		console.log(current_frequency);
-		if (current_frequency == 4) {
-            $("input[name='OtherAmount']").val(required_installment_amount);
-			$("span.required_contribution").html(required_installment_amount + " per month for 12 months");
-        } else {
-            $("input[name='OtherAmount']").val(required_donation_amount);
-			$("span.required_contribution").html(required_donation_amount);
-        }
-		$("input[name='OtherAmount']").attr("readonly", true);
-		$("input[name='OtherAmount']").focus();
+		setTimeout(update_amount_values_display, 10);
 	}
 
-	/* TK;  A function to compare the required_donation_amount value
-	 * (or if frequency is 4, required_installment_amount value)
-	 * to each of the visible giving levels and disable any that are 
-	 * less than that value. 
-	 */
+	let update_amount_values_display = function() {
+        if (current_frequency == 4) {
+            $("span.required_contribution").html(required_installment_amount + " per month for 12 months");
+            $("input[name='OtherAmount']").parent().prev().hide();
+            $("input[name='OtherAmount']").val(required_installment_amount);
+        } else {
+            $("input[name='OtherAmount']").val(required_donation_amount);
+            $("span.required_contribution").html(required_donation_amount);
+            $("input[name='OtherAmount']").parent().prev().hide();
+        }
+        $("input[name='OtherAmount']").attr("readonly", true);
+        $("input[name='OtherAmount']").focus();
+	}
 
 
 	/* TK: a function to to clear the shopping_cart cookie on successful form donation
