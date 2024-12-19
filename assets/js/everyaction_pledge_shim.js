@@ -69,6 +69,7 @@
             $("input[name='OtherAmount']").val(required_donation_amount);
 			$("span.required_contribution").html(required_donation_amount);
         }
+		$("input[name='OtherAmount']").attr("readonly", true);
 		$("input[name='OtherAmount']").focus();
 	}
 
@@ -83,17 +84,13 @@
 	*/
 
 	let initialize_form_when_ready = function () {
-		if (!$("input[title='PCodes']").length) {
-			setTimeout(initialize_form_when_ready, 100);
-		} else {
-			setup_pcode_and_premium_fields();
+		setup_pcode_and_premium_fields();
+		check_frequency();
+		update_pcode_and_premium_and_value_fields();
+		$('input[name="SelectedFrequency"]').on('change click', function () {
 			check_frequency();
-			update_pcode_and_premium_and_value_fields();
-			$('input[name="SelectedFrequency"]').on('change click', function () {
-				check_frequency();
-				set_required_amount();
-			});
-		}
+			set_required_amount();
+		});
 
 	}
 
