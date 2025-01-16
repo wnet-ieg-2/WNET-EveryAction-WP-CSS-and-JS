@@ -39,13 +39,14 @@
 		$.each(shopping_cart, function( index, item ) {
 			pcodestring += item.pcode + ':' + item.quantity + '|';
 			var this_item_value = Number(item.quantity) * Number(item.required_amount);
-			premiumstring += item.title + ' | Premium Code: ' + item.pcode + ' | Price: $' + item.required_amount + ' | Quantity: ' +  item.quantity + "\n" ;
-			premiumhtml += '<li><strong>' + item.title + '</strong> | Premium Code: ' + item.pcode + ' | Price: $' + item.required_amount + ' | Quantity: ' +  item.quantity + "</li>" ;
+			premiumstring += item.title + ' Price: $' + item.required_amount + ' Quantity: ' +  item.quantity + "\r\n" ;
+			premiumhtml += '<li><strong>' + item.title + '</strong> Price: $' + item.required_amount + ' Quantity: ' +  item.quantity + "</li>" ;
 			required_donation_amount += this_item_value;
 		});
 		pcode_field.val(pcodestring);
 		premium_field.val(premiumstring);
-		$('.premium_list').html('<h4>Your order: <em><a href="/support/pledge-premiums/cart/">edit items</a></em></h4><ul>' + premiumhtml + '</ul><p class="contribution_message">Minimum contribution: $<span class="required_contribution">'+required_donation_amount+'</span></p>');
+		var formatted_required_donation_amount = required_donation_amount.toLocaleString();
+		$('.premium_list').html('<h4>Your order: <em><a href="/support/pledge-premiums/cart/">edit items</a></em></h4><ul>' + premiumhtml + '</ul><p class="contribution_message">Minimum contribution: $<span class="required_contribution">'+formatted_required_donation_amount+'</span></p>');
 		set_required_amount();
 	}
 
@@ -73,8 +74,9 @@
             $("input[name='OtherAmount']").parent().prev().hide();
             $("input[name='OtherAmount']").val(required_installment_amount);
         } else {
+			var formatted_required_donation_amount = required_donation_amount.toLocaleString();
             $("input[name='OtherAmount']").val(required_donation_amount);
-            $("span.required_contribution").html(required_donation_amount);
+            $("span.required_contribution").html(formatted_required_donation_amount);
             $("input[name='OtherAmount']").parent().prev().hide();
         }
         $("input[name='OtherAmount']").attr("readonly", true);
