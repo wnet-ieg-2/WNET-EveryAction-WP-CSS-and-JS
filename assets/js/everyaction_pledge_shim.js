@@ -70,11 +70,12 @@
 
 	let update_amount_values_display = function() {
         if (current_frequency == 4) {
-            $("span.required_contribution").html(required_installment_amount + " per month for 12 months");
+            var formatted_required_installment_amount = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, trailingZeroDisplay: 'stripIfInteger'}).format(required_installment_amount);
+            $("span.required_contribution").html(formatted_required_installment_amount + " per month for 12 months");
             $("input[name='OtherAmount']").parent().prev().hide();
-            $("input[name='OtherAmount']").val(required_installment_amount);
+            $("input[name='OtherAmount']").val(formatted_required_installment_amount);
         } else {
-			var formatted_required_donation_amount = required_donation_amount.toLocaleString();
+			var formatted_required_donation_amount = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, trailingZeroDisplay: 'stripIfInteger'}).format(required_donation_amount);
             $("input[name='OtherAmount']").val(required_donation_amount);
             $("span.required_contribution").html(formatted_required_donation_amount);
             $("input[name='OtherAmount']").parent().prev().hide();
