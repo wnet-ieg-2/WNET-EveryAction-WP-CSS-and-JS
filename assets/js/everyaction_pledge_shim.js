@@ -4,8 +4,8 @@
  * to store that info and pass it along to the EA backend
  */
 
-	var shopping_cart = Cookies.get('shopping_cart');
-    if (typeof shopping_cart !== 'undefined') { shopping_cart = JSON.parse( shopping_cart ); }
+	var shopping_cart = localStorage.getItem('shopping_cart');
+    if (typeof shopping_cart !== 'undefined' && shopping_cart !== null) { shopping_cart = JSON.parse( shopping_cart ); }
     else { 
 		shopping_cart = []; 
 		}
