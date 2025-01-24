@@ -29,7 +29,7 @@
 	function update_pcode_and_premium_and_value_fields() {
 		if (shopping_cart.length == 0) {
 			// this shouldn't ever come up but JIC
-			$('.premium_list').html('<h4>Your shopping cart is empty: <em><a href="/support/pledge-premiums/">Return to premium list</a></em></h4>');
+			$('.premium_list').html('<h4>Your shopping cart is empty. <strong><a href="/support/pledge-premiums/">Click here to choose your Thank You Gifts.</a></strong></h4>');
 			return;
 		}
 		var pcodestring = '';
@@ -84,9 +84,6 @@
         $("input[name='OtherAmount']").focus();
 	}
 
-
-	/* TK: a function to to clear the shopping_cart cookie on successful form donation
-	*/
 
 	let initialize_form_when_ready = function () {
 		setup_pcode_and_premium_fields();
