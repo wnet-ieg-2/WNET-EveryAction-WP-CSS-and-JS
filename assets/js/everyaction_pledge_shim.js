@@ -46,7 +46,7 @@
 		pcode_field.val(pcodestring);
 		premium_field.val(premiumstring);
 		var formatted_required_donation_amount = required_donation_amount.toLocaleString();
-		$('.premium_list').html('<h4>Your order: <em><a href="/support/pledge-premiums/cart/">edit items</a></em></h4><ul>' + premiumhtml + '</ul><p class="contribution_message">Minimum contribution: $<span class="required_contribution">'+formatted_required_donation_amount+'</span></p>');
+		$('.premium_list').html("<p><em><a href='/support/pledge-premiums/cart/'>Change your order</a></em></p><h3>Here's a summary of your order:</h3><ul>" + premiumhtml + '</ul><p class="contribution_message">Minimum contribution: $<span class="required_contribution">'+formatted_required_donation_amount+'</span></p>');
 		set_required_amount();
 	}
 
@@ -60,7 +60,6 @@
 
 	function set_required_amount() {
 		if (!required_donation_amount) {
-			console.log('no req amt set');
 			return;
 		}
 		required_installment_amount = (required_donation_amount/12);
