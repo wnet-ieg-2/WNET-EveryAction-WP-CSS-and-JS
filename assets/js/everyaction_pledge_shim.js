@@ -39,7 +39,11 @@
 		$.each(shopping_cart, function( index, item ) {
 			pcodestring += item.pcode + ':' + item.qty + '|';
 			var this_item_value = Number(item.qty) * Number(item.amt);
-			premiumstring += item.title + ' Price: $' + item.amt + ' Fair market value: $' + item.fmv + ' Quantity: ' +  item.qty + "\r\n" ;
+			var fmv_string = '';
+			if (typeof item.fmv !== 'undefined') {
+				fmv_string = ' Fair market value: $' + item.fmv;
+			}
+			premiumstring += item.title + ' Price: $' + item.amt + fmv_string + ' Quantity: ' +  item.qty + "\r\n" ;
 			premiumhtml += '<li><strong>' + item.title + '</strong> Price: $' + item.amt + ' Quantity: ' +  item.qty + "</li>" ;
 			required_donation_amount += this_item_value;
 		});
