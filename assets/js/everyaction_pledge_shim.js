@@ -48,7 +48,9 @@
 			required_donation_amount += this_item_value;
 		});
 		pcode_field.val(pcodestring);
-		premium_field.val(premiumstring);
+		var cleaned_textarea = document.createElement('textarea');
+		cleaned_textarea.innerHTML = premiumstring;
+		premium_field.val(cleaned_textarea.value);
 		var formatted_required_donation_amount = required_donation_amount.toLocaleString();
 		$('.premium_list').html("<p><em><a href='/support/pledge-premiums/cart/'>Change your order</a></em></p><h3>Here's a summary of your order:</h3><ul>" + premiumhtml + '</ul><p class="contribution_message">Minimum contribution: $<span class="required_contribution">'+formatted_required_donation_amount+'</span></p>');
 		set_required_amount();
