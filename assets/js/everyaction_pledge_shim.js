@@ -41,9 +41,9 @@
 			var this_item_value = Number(item.qty) * Number(item.amt);
 			var fmv_string = '';
 			if (typeof item.fmv !== 'undefined') {
-				fmv_string = ' Fair market value: $' + item.fmv;
+				fmv_string = ' – Fair Market Value $' + item.fmv;
 			}
-			premiumstring += item.title + ' Price: $' + item.amt + fmv_string + ' Quantity: ' +  item.qty + "\r\n" ;
+			premiumstring += 'The ' + item.title + fmv_string + "\r\n" ;
 			premiumhtml += '<li><strong>' + item.title + '</strong> Price: $' + item.amt + ' Quantity: ' +  item.qty + "</li>" ;
 			required_donation_amount += this_item_value;
 		});
