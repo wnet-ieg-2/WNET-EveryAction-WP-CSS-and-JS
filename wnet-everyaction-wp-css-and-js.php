@@ -26,6 +26,9 @@ class WNET_EveryAction_WP_CSS_and_JS {
     // this will register and enqueue the assets in the specific template(s) that need them
     wp_register_script( $this->token . '_js' , $this->assets_url . 'js/ea-donate-form.js', array('jquery'), $this->version, true );
     wp_enqueue_script( $this->token . '_js' );
+	wp_script_add_data($this->token . '_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
+
+
     wp_enqueue_style( $this->token . '_css', $this->assets_url . 'css/ea-donate-form-theme-styles.css', null, $this->version);
 
 	// enqueue the pledge shim on one specific form
