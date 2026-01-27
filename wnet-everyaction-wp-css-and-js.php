@@ -14,7 +14,7 @@ class WNET_EveryAction_WP_CSS_and_JS {
   public $version;
 
   public function __construct() {
-    $this->version = '2026.01.27'; 
+    $this->version = '2026.01.27.1'; 
     /* use today's date in the line above in 'xxxx.xx.xx' format to make sure CloudFront is using this version. 
      * If including the script elsewhere, it is generally best to also include that date as a query string
     */   
@@ -27,7 +27,9 @@ class WNET_EveryAction_WP_CSS_and_JS {
     wp_register_script( $this->token . '_js' , $this->assets_url . 'js/ea-donate-form.js', array('jquery'), $this->version, true );
     wp_enqueue_script( $this->token . '_js' );
 	wp_script_add_data($this->token . '_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
-
+	wp_register_script( $this->token . '_ea_additionalfields_js', 'https://nvlupin.blob.core.windows.net/images/van/WNET/WNET/1/89836/images/2026/2026_WNET_Main_Theme_AQ_Standard.js', array($this->token . '_js'), $this->version, true );
+	wp_enqueue_script( $this->token . '_ea_additionalfields_js');
+	wp_script_add_data( $this->token . '_ea_additionalfields_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.'); 
 
     wp_enqueue_style( $this->token . '_css', $this->assets_url . 'css/ea-donate-form-theme-styles.css', null, $this->version);
 
