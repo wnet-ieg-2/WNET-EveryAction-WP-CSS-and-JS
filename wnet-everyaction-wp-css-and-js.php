@@ -35,13 +35,15 @@ class WNET_EveryAction_WP_CSS_and_JS {
 		wp_enqueue_script( $this->token . '_passportinstantgrat_js');
 		wp_script_add_data( $this->token . '_passportinstantgrat_js', 'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
 		if ('premium-checkout' == $post->post_name) {
-			// enqueue the pledge shim and pledge additional questions on one specific form
+			// enqueue the pledge shim and pledge additional questions only on the pledge premium checkout form 
 			wp_register_script( $this->token . '_ea_additionalfields_premiums_js', 'https://nvlupin.blob.core.windows.net/images/van/WNET/WNET/1/78997/images/2025_MWD_WNET_Contribution_Main_Theme/js/reusables/2026_WNET_Main_Theme_AQ_E-Store.js', array($this->token . '_js'), $this->version, true );
             wp_enqueue_script( $this->token . '_ea_additionalfields_premiums_js');
             wp_script_add_data( $this->token . '_ea_additionalfields_premiums_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
-            wp_enqueue_script('everyaction_pledge_shim',$this->assets_url . 'js/everyaction_pledge_shim.js', array('jquery'), $this->version, true);
+            wp_register_script('everyaction_pledge_shim',$this->assets_url . 'js/everyaction_pledge_shim.js', array('jquery'), $this->version, true);
+			wp_enqueue_script( 'everyaction_pledge_shim');
+			wp_script_add_data( 'everyaction_pledge_shim',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
 		} else {
-			// all the other forms
+			// all the other everyaction donate forms get these additional questions
 			wp_register_script( $this->token . '_ea_additionalfields_js', 'https://nvlupin.blob.core.windows.net/images/van/WNET/WNET/1/89836/images/2026/2026_WNET_Main_Theme_AQ_Standard.js', array($this->token . '_js'), $this->version, true );
 			wp_enqueue_script( $this->token . '_ea_additionalfields_js');
 			wp_script_add_data( $this->token . '_ea_additionalfields_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
