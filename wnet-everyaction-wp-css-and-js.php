@@ -14,7 +14,7 @@ class WNET_EveryAction_WP_CSS_and_JS {
   public $version;
 
   public function __construct() {
-    $this->version = '2026.01.28'; 
+    $this->version = '2026.01.28.1'; 
     /* use today's date in the line above in 'xxxx.xx.xx' format to make sure CloudFront is using this version. 
      * If including the script elsewhere, it is generally best to also include that date as a query string
     */   
@@ -44,7 +44,7 @@ class WNET_EveryAction_WP_CSS_and_JS {
 			wp_script_add_data( 'everyaction_pledge_shim',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
 		} else {
 			// all the other everyaction donate forms get these additional questions
-			wp_register_script( $this->token . '_ea_additionalfields_js', 'https://nvlupin.blob.core.windows.net/images/van/WNET/WNET/1/89836/images/2026/2026_WNET_Main_Theme_AQ_Standard.js', array($this->token . '_js'), $this->version, true );
+			wp_register_script( $this->token . '_ea_additionalfields_js', 'https://nvlupin.blob.core.windows.net/images/van/WNET/WNET/1/78997/images/2025_MWD_WNET_Contribution_Main_Theme/js/reusables/2026_WNET_Main_Theme_AQ_Standard.js', array($this->token . '_js'), $this->version, true );
 			wp_enqueue_script( $this->token . '_ea_additionalfields_js');
 			wp_script_add_data( $this->token . '_ea_additionalfields_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
 		}
