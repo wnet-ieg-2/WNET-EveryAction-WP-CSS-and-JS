@@ -15,9 +15,6 @@ const passPortInstantGratification = function (args) {
 
     console.log('preSegue: passPortInstantGratification', args);
 
-	// this line here takes the value from WP's localize_script function to assign station.station_name
-    var station_nice_name = station.station_name;
-
 	// these lines now use server-relative urls, since they're the same on all WNET station sites
     var instant_grat_ajaxurl = '/pbsoauth/instant_gratification/';
     var activateurl = '/pbsoauth/activate/?activation_token=';
@@ -101,33 +98,12 @@ const passPortInstantGratification = function (args) {
   var first_name = $('#trans_first_name').text();
   var last_name = $('#trans_last_name').text();
   var email = $('#trans_email').text();
-  var xv = 1;
-  if ( $('#trans_xv').length ) {
-    // @ts-ignore
-    xv = $('#trans_xv').text();
-  } 
-   
-  /* this if for the connectivity tester and doesnt check amount */ 
-  $('#InstantGratTester').click(function(e){
-    e.preventDefault();
-    // @ts-ignore
-    trans_id = $('#transaction_id').val();
-    // @ts-ignore
-    first_name = $('#trans_first_name').val();
-    // @ts-ignore
-    last_name = $('#trans_last_name').val();
-    // @ts-ignore
-    email = $('#trans_email').val();
-    // @ts-ignore
-    xv = $('#trans_xv').val();
-    createProvisionalMembership();
-  });
+  var xv = 'skip';
+  var station_nice_name = $('#station_name').text();
 
-  /* this checks for amount first */
+
   $(function() {
-    if ( ! $('#InstantGratTester').length){ 
-      checkForAmountThenCreateMember();
-    }
+  	checkForAmountThenCreateMember();
   });
 
   // handling the PBS return path var
