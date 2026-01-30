@@ -20,9 +20,9 @@ const passPortInstantGratification = function (args) {
     var activateurl = '/pbsoauth/activate/?activation_token=';
     var watchurl = '/programs/';
     var imgurl = '/wp-content/plugins/wnet-passport-instant-gratification/assets/img/';
+    var pbs_referrer_qs = '';
 
-
-  function createProvisionalMembership() {
+  function createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs) {
     $('#mvault_status_window').html('<div class="loading"><p><img src="' + imgurl + 'loading.gif" style="width:1em;" />&nbsp;Creating ' + station_nice_name + ' Passport Account...</p></div>');
     // @ts-ignore
     var ajax = $.ajax({
@@ -34,7 +34,7 @@ const passPortInstantGratification = function (args) {
         'last_name': last_name,
         'email': email,
         'from_pbs' : pbs_referrer_qs,
-        'xv' : 'skip' 
+        'xv' : xv
       },
       xhr: function() {
         var xhr = $.ajaxSettings.xhr();
@@ -65,6 +65,14 @@ const passPortInstantGratification = function (args) {
   }
 
   function checkForAmountThenCreateMember() {
+      /* these are spans on the thankyou page */
+  var trans_id = $('#transaction_id').text();
+  var first_name = $('#trans_first_name').text();
+  var last_name = $('#trans_last_name').text();
+  var email = $('#trans_email').text();
+  var xv = 'skip';
+  var station_nice_name = $('#station_name').text();
+
     // Luminate doesn't provide a decent way to filter for amount.
     var amount = 0;
     if ( $('#trans_amount').length ) {
@@ -76,7 +84,7 @@ const passPortInstantGratification = function (args) {
     // sustainers have a frequency unit of 'months', all others dont
     if ( $('#trans_frequency_unit').length ) {
       // @ts-ignore
-      freq = $('#trans_frequency_unit').text();
+     var freq = $('#trans_frequency_unit').text();
       // @ts-ignore
       if ((freq == 'months') || (freq == 'monthly')) {
         amount = amount * 12;
@@ -88,32 +96,21 @@ const passPortInstantGratification = function (args) {
       $('#mvault_status_window').html('<p><i>Note: Due to rights restrictions, '+ station_nice_name + ' Passport is only available to Members who have given $60 or more in the past year.</i></p>');
     } else {
       // passed our tests, so it is worth trying to attemp the membership 
-      createProvisionalMembership();
+      createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs);
     }
   }
 
-
-  /* these are spans on the thankyou page */
-  var trans_id = $('#transaction_id').text();
-  var first_name = $('#trans_first_name').text();
-  var last_name = $('#trans_last_name').text();
-  var email = $('#trans_email').text();
-  var xv = 'skip';
-  var station_nice_name = $('#station_name').text();
-
-
   $(function() {
-  	checkForAmountThenCreateMember();
-  });
-
   // handling the PBS return path var
   // @ts-ignore
   if (typeof pbs_referrer === 'undefined') {
-    var pbs_referrer_qs = '';
+     pbs_referrer_qs = '';
   } else {
     // @ts-ignore
-    var pbs_referrer_qs = '/?return_path=' + pbs_referrer;
+     pbs_referrer_qs = '/?return_path=' + pbs_referrer;
   }
+    checkForAmountThenCreateMember();
+  });
 
   return args;
 
