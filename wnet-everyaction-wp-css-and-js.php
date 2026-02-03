@@ -28,11 +28,6 @@ class WNET_EveryAction_WP_CSS_and_JS {
 	if ( is_singular('contribute')) {
         global $post;
 
-		// set $station_name from the theme
-		$station_name = !empty(STATION_THEME) ? STATION_THEME : 'THIRTEEN';
-
-
-
 		wp_register_script( $this->token . '_js' , $this->assets_url . 'js/ea-donate-form.js', array('jquery'), $this->version, true );
 		wp_enqueue_script( $this->token . '_js' );
 		wp_script_add_data($this->token . '_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
