@@ -563,6 +563,11 @@ div.at-radios.clearfix {
 
 /* SUBMIT BTN */
 
+/* Member ID */
+
+input[title="Member ID"] {
+  min-width: 50%;
+}
 
 /* Tributes & Gift Memberships  */
 .form-item-inhonororinmemoryof div.radios {

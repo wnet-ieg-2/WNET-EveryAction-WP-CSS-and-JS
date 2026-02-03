@@ -1,12 +1,20 @@
+// @ts-nocheck
 /******************
 ******************
 ******************
 ***
-*** 2026 WNET Main Theme AQ Default Script
+*** additional_questions_standard
 ***
 ******************
 ******************
 ******************/
+window.nvtag_callbacks = window.nvtag_callbacks || {};
+var nvtag_callbacks = window.nvtag_callbacks;
+nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
+nvtag_callbacks.alterFormDefinition= nvtag_callbacks.alterFormDefinition|| [];
+nvtag_callbacks.alterErrors = nvtag_callbacks.alterErrors || [];
+nvtag_callbacks.alterRequireValid = nvtag_callbacks.alterRequireValid || [];
+nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 
   // Move I'm a current sustaining member and I'm updating my information
   // @ts-ignore
@@ -21,10 +29,10 @@
       // @ts-ignore
       let sustainerMember = $('.at-row.at-row-full.' + window.additionalQuestion[0].name);
       // @ts-ignore
-      let prefixField = $('.at-row.FirstName.LastName').closest('.at-row');
+      let firstName = $('.at-row.FirstName.LastName').closest('.at-row');
   
-      if (sustainerMember.length && prefixField.length) {
-        sustainerMember.insertBefore(prefixField);
+      if (sustainerMember.length && firstName.length) {
+        sustainerMember.insertBefore(firstName);
       }
   
       // Function to handle frequency changes
@@ -238,7 +246,6 @@
   };
 
 
-
     // Handle Auto Renewal Subscription Checkbox
 window.nvtag_callbacks.alterRequireValid.push(function (args) {
   // Check if additionalQuestion exists and has the required index
@@ -273,8 +280,6 @@ window.nvtag_callbacks.alterRequireValid.push(function (args) {
   });
 
 
-
-
   // var nvtag_callbacks = window.nvtag_callbacks = window.nvtag_callbacks || {};
   // nvtag_callbacks.alterFormDefinition= nvtag_callbacks.alterFormDefinition|| [];
 nvtag_callbacks.alterFormDefinition.push(function (args) {
@@ -306,16 +311,89 @@ nvtag_callbacks.alterFormDefinition.push(function (args) {
       }
       // End of document ready
     });
-console.log('alterFormDef', args);
+// console.log('alterFormDef', args);
 return args;
 });
 
+ const moveMemberID = function (args) {
 
-  window.nvtag_callbacks.postRender.push(moveSustainerMemberField);
+    // @ts-ignore
+    if (!window.additionalQuestion || !window.additionalQuestion[0] || !window.additionalQuestion[5]) {
+      return args;
+    }
+
+    // @ts-ignore
+    $(document).ready(function() {
+      // @ts-ignore
+      let sustainerMember = $('div.at-row.at-row-full.' + window.additionalQuestion[0].name);
+      // @ts-ignore
+      let firstName = $('div.at-fields .at-row.FirstName.LastName');
+      // @ts-ignore
+      let memberID = $('div.at-row.at-row-full.'+ window.additionalQuestion[5].name);
+      let memberIDInput = $('input[title="Member ID"]');
+
+      if (memberID.length && firstName.length && memberIDInput.length) {
+        setTimeout(function() {
+          memberID.insertAfter(sustainerMember);
+        }, 50);
+      }
+    });
+
+      return args;
+    };
+
+    const howShouldWeAcknowledgeYou = function (args) {
+    // @ts-ignore
+    let memberID = $('div.at-row.at-row-full.'+ window.additionalQuestion[5].name);
+    // @ts-ignore
+    if (!window.additionalQuestion || !window.additionalQuestion[6] || !window.additionalQuestion[7] || !window.additionalQuestion[8]) {
+      return args;
+    }
+
+    $(document).ready(function() {
+      // @ts-ignore
+      let formID = window.formID;
+      // Hide memberID if additionalQuestions 6, 7, 8 are defined
+      if (window.additionalQuestion[6] && window.additionalQuestion[7] && window.additionalQuestion[8]) {
+        memberID.hide();
+      }
+    });
+
+      // @ts-ignore
+      let contributionInformation = $("fieldset#NVContributionForm" + formID + "-ContributionInformation");
+
+      // create a fieldset with the id of hsway and the class of at-fieldset
+      let fieldset = $('<fieldset>', {
+        id: 'hsway',
+        class: 'at-fieldset'
+      });
+
+    fieldset.insertAfter(contributionInformation);
+
+    let additionalChildren6Headline = $('.at-row.at-row-full.' + window.additionalQuestion[6].name);
+    $('.at-row.at-row-full.' + window.additionalQuestion[6].name).css('margin', '0');
+    let additionalChildren5Input = $('.at-row.at-row-full.' + window.additionalQuestion[7].name);
+    let additionalChildren5Checkbox = $('.at-row.at-row-full.' + window.additionalQuestion[8].name)
+
+    // now lets insert additionalChildren6Headline, additionalChildren5Input and additionalChildren5Checkbox into the fieldset that was created
+    if (additionalChildren6Headline.length && additionalChildren5Input.length && additionalChildren5Checkbox.length) {
+      additionalChildren6Headline.appendTo(fieldset);
+      additionalChildren5Input.appendTo(fieldset);
+      additionalChildren5Checkbox.appendTo(fieldset);
+    };
+
+    return args;
+
+    console.log('WNET-Patrons Main-AQ-HSWAY')
+  };
+
+  nvtag_callbacks.postRender.push(moveSustainerMemberField);
   nvtag_callbacks.postRender.push(moveBeConnectedField);
   nvtag_callbacks.postRender.push(moveReceiveTextsField);
   nvtag_callbacks.postRender.push(moveRecieveEmailsField);
-  nvtag_callbacks.postRender.push(moveSustainerMemberField);
   nvtag_callbacks.postRender.push(updateAutoRenewalSubscriptionLabel);
   nvtag_callbacks.postRender.push(onLoadAutoRenewalSubscriptionLabel);
   nvtag_callbacks.postRender.push(statusAutoRenewalSubscriptionLabel);
+  nvtag_callbacks.postRender.push(statusAutoRenewalFrequency);
+  nvtag_callbacks.postRender.push(moveMemberID);
+  nvtag_callbacks.postRender.push(howShouldWeAcknowledgeYou);
