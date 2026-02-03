@@ -343,16 +343,17 @@ return args;
     };
 
     const howShouldWeAcknowledgeYou = function (args) {
+
     // @ts-ignore
-    let memberID = $('div.at-row.at-row-full.'+ window.additionalQuestion[5].name);
-    // @ts-ignore
-    if (!window.additionalQuestion || !window.additionalQuestion[6] || !window.additionalQuestion[7] || !window.additionalQuestion[8]) {
+    if (!window.additionalQuestion || !window.additionalQuestion[5] || !window.additionalQuestion || !window.additionalQuestion[6] || !window.additionalQuestion[7] || !window.additionalQuestion[8]) {
       return args;
     }
 
     $(document).ready(function() {
       // @ts-ignore
       let formID = window.formID;
+      // @ts-ignore
+      let memberID = $('div.at-row.at-row-full.'+ window.additionalQuestion[5].name);
       // Hide memberID if additionalQuestions 6, 7, 8 are defined
       if (window.additionalQuestion[6] && window.additionalQuestion[7] && window.additionalQuestion[8]) {
         memberID.hide();
