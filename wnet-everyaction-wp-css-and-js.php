@@ -39,7 +39,6 @@ class WNET_EveryAction_WP_CSS_and_JS {
 		wp_enqueue_style( $this->token . '_css', $this->assets_url . 'css/ea-donate-form-theme-styles.css', null, $this->version);
 		wp_register_script( $this->token . '_passportinstantgrat_js', $this->assets_url . 'js/passport_instant_gratification.js', array('jquery'), $this->version, true );
 		wp_enqueue_script( $this->token . '_passportinstantgrat_js');
-		wp_localize_script( $this->token . '_passportinstantgrat_js', 'station', array('station_name' => $station_name) ); 
 		wp_script_add_data( $this->token . '_passportinstantgrat_js', 'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
 		if ('premium-checkout' == $post->post_name) {
 			// enqueue the pledge shim and pledge additional questions only on the pledge premium checkout form 
