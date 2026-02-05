@@ -14,7 +14,7 @@ class WNET_EveryAction_WP_CSS_and_JS {
   public $version;
 
   public function __construct() {
-    $this->version = '2026.02.03.1'; 
+    $this->version = '2026.02.05'; 
     /* use today's date in the line above in 'xxxx.xx.xx' format to make sure CloudFront is using this version. 
      * If including the script elsewhere, it is generally best to also include that date as a query string
     */   
@@ -42,6 +42,12 @@ class WNET_EveryAction_WP_CSS_and_JS {
 			wp_register_script( $this->token . '_passportinstantgrat_js', $this->assets_url . 'js/passport_instant_gratification.js', array('jquery'), $this->version, true );
 			wp_enqueue_script( $this->token . '_passportinstantgrat_js');
 			wp_script_add_data( $this->token . '_passportinstantgrat_js', 'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
+			wp_register_script( $this->token . '_passport_cuslb_modal_js', $this->assets_url . 'js/passport_cuslb_modal.js', array('jquery'), $this->version, true );
+			wp_enqueue_script( $this->token . '_passport_cuslb_modal_js');
+			wp_script_add_data( $this->token . '_passport_cuslb_modal_js', 'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
+			wp_register_script( $this->token . '_passport_alert_modal_js', $this->assets_url . 'js/passport_alert_modal.js', array('jquery'), $this->version, true );
+			wp_enqueue_script( $this->token . '_passport_alert_modal_js');
+			wp_script_add_data( $this->token . '_passport_alert_modal_js', 'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
 		}
 		if ('premium-checkout' == $post->post_name) {
 			// enqueue the pledge shim and pledge additional questions only on the pledge premium checkout form 
