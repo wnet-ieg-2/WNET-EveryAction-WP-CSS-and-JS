@@ -67,6 +67,7 @@ body {
 
 .st-THIRTEEN {
   /* 007DA3 */
+  --committee-main-color: #b51f22;
   --button-selected-bg-color: #007DA3;
   --build-page-content-anchor: #007DA3;
   --amount-selected-bg: #007DA3;
@@ -75,6 +76,10 @@ body {
   --btn-at-primary-hover: #2538c4;
   --copy-color: #000000;
   --font-family-primary: Arial, Helvetica, sans-serif;
+  --pp-cuslb-bg: #007DA3;
+  --pp-cuslb-btn-bg: var(--committee-main-color);
+  --pp-cuslb-btn-bg-hover: #ffffff;
+
 }
 
 .st-WLIW {
@@ -731,7 +736,4 @@ Embedded Styles
     .at-btn-radio-wrapper, .at-credit-card-button-wrapper, .at-paypal-button-wrapper {
     margin: 0 !important;
   }
-
 }
-
-
