@@ -13,20 +13,7 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 // @ts-ignore
 const passPortInstantGratification = function (args) {
 
-    console.log('preSegue: passPortInstantGratification', args);
-
-    var passport_host='';
-    if ($('#passport_host').length) {
-      passport_host = $('#passport_host').text();
-    }
-  
-	// these lines now use server-relative urls, since they're the same on all WNET station sites
-    var instant_grat_ajaxurl = passport_host + '/pbsoauth/instant_gratification/';
-    var watchurl = passport_host + '/programs/';
-    var imgurl = passport_host + '/wp-content/plugins/wnet-passport-instant-gratification/assets/img/';
-    var pbs_referrer_qs = '';
-
-  function createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs, activateurl) {
+  function createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs, activateurl, instant_grat_ajaxurl, imgurl, watchurl) {
     $('#mvault_status_window').html('<div class="loading"><p><img src="' + imgurl + 'loading.gif" style="width:1em;" />&nbsp;Creating ' + station_nice_name + ' Passport Account...</p></div>');
     // @ts-ignore
     var ajax = $.ajax({
@@ -69,14 +56,26 @@ const passPortInstantGratification = function (args) {
   }
 
   function checkForAmountThenCreateMember() {
-	/* these are spans on the thankyou page */
-	var trans_id = $('#transaction_id').text();
-	var first_name = $('#trans_first_name').text();
-	var last_name = $('#trans_last_name').text();
-	var email = $('#trans_email').text();
-	var xv = 'skip';
-	var station_nice_name = $('#station_name').text();
+	  var passport_host='';
+    if ($('#passport_host').length) {
+      passport_host = $('#passport_host').text();
+    }
+	// these lines now use server-relative urls, since they're the same on all WNET station sites
+    var instant_grat_ajaxurl = passport_host + '/pbsoauth/instant_gratification/';
+    var watchurl = passport_host + '/programs/';
+    var imgurl = passport_host + '/wp-content/plugins/wnet-passport-instant-gratification/assets/img/';
+    var pbs_referrer_qs = '';
 
+    /* these are spans on the thankyou page */
+    var trans_id = $('#transaction_id').text();
+    var first_name = $('#trans_first_name').text();
+    var last_name = $('#trans_last_name').text();
+    var email = $('#trans_email').text();
+    var xv = 'skip';
+    var station_nice_name = $('#station_name').text();
+
+
+  
 	// optionally set the activation url, for PBS.org-initiated donations, also a span on the ty page
 	var activateurl = '/pbsoauth/activate/?activation_token=';
 	if ($('#activation_url').length) {
@@ -106,7 +105,7 @@ const passPortInstantGratification = function (args) {
       $('#mvault_status_window').html('<p><i>Note: Due to rights restrictions, '+ station_nice_name + ' Passport is only available to Members who have given $60 or more in the past year.</i></p>');
     } else {
       // passed our tests, so it is worth trying to attemp the membership 
-      createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs, activateurl);
+      createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs, activateurl, instant_grat_ajaxurl, imgurl, watchurl);
     }
   }
 
@@ -121,6 +120,8 @@ const passPortInstantGratification = function (args) {
   }
     checkForAmountThenCreateMember();
   });
+
+  console.log('preSegue: passPortInstantGratification', args);
 
   return args;
 
