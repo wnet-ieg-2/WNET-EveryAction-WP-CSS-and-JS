@@ -15,10 +15,15 @@ const passPortInstantGratification = function (args) {
 
     console.log('preSegue: passPortInstantGratification', args);
 
+    var passport_host='';
+    if ($('#passport_host').length) {
+      passport_host = $('#passport_host').text();
+    }
+  
 	// these lines now use server-relative urls, since they're the same on all WNET station sites
-    var instant_grat_ajaxurl = '/pbsoauth/instant_gratification/';
-    var watchurl = '/programs/';
-    var imgurl = '/wp-content/plugins/wnet-passport-instant-gratification/assets/img/';
+    var instant_grat_ajaxurl = passport_host + '/pbsoauth/instant_gratification/';
+    var watchurl = passport_host + '/programs/';
+    var imgurl = passport_host + '/wp-content/plugins/wnet-passport-instant-gratification/assets/img/';
     var pbs_referrer_qs = '';
 
   function createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs, activateurl) {
@@ -77,7 +82,6 @@ const passPortInstantGratification = function (args) {
 	if ($('#activation_url').length) {
 		activateurl = $('#activation_url').text();
 	}
-  
 
     // Luminate doesn't provide a decent way to filter for amount.
     var amount = 0;
