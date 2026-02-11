@@ -157,7 +157,7 @@ let displayPayWithCreditCard = function(args) {
       // @ts-ignore
       $(document).ready(function() {
         const cc_radio_id = $(`#creditcard_radio_${window.formID} + label.at-btn-radio.large`);
-        console.log(cc_radio_id);
+        // console.log(cc_radio_id);
         setTimeout(() => {
           cc_radio_id.click();
         }, 0.5);  
