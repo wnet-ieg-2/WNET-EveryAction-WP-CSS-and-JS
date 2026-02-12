@@ -14,7 +14,7 @@ class WNET_EveryAction_WP_CSS_and_JS {
   public $version;
 
   public function __construct() {
-    $this->version = '2026.02.05'; 
+    $this->version = '2026.02.12'; 
     /* use today's date in the line above in 'xxxx.xx.xx' format to make sure CloudFront is using this version. 
      * If including the script elsewhere, it is generally best to also include that date as a query string
     */   
@@ -33,12 +33,12 @@ class WNET_EveryAction_WP_CSS_and_JS {
 			$enqueue_new_scripts = get_field('ea_donate_form_enqueue_scripts', get_the_ID());
 		}
 
-		wp_register_script( $this->token . '_js' , $this->assets_url . 'js/ea-donate-form.js', array('jquery'), $this->version, true );
-		wp_enqueue_script( $this->token . '_js' );
-		wp_script_add_data($this->token . '_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
-		wp_enqueue_style( $this->token . '_css', $this->assets_url . 'css/ea-donate-form-theme-styles.css', null, $this->version);
 		if (!empty($enqueue_new_scripts)) {
 			// only for EA donate forms that are embedded and have support scripts moved out of EA "reusables" and into the EA "theme"
+			wp_register_script( $this->token . '_js' , $this->assets_url . 'js/ea-donate-form.js', array('jquery'), $this->version, true );
+			wp_enqueue_script( $this->token . '_js' );
+			wp_script_add_data($this->token . '_js',  'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
+			wp_enqueue_style( $this->token . '_css', $this->assets_url . 'css/ea-donate-form-theme-styles.css', null, $this->version);
 			wp_register_script( $this->token . '_passportinstantgrat_js', $this->assets_url . 'js/passport_instant_gratification.js', array('jquery'), $this->version, true );
 			wp_enqueue_script( $this->token . '_passportinstantgrat_js');
 			wp_script_add_data( $this->token . '_passportinstantgrat_js', 'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
@@ -48,6 +48,12 @@ class WNET_EveryAction_WP_CSS_and_JS {
 			wp_register_script( $this->token . '_passport_alert_modal_js', $this->assets_url . 'js/passport_alert_modal.js', array('jquery'), $this->version, true );
 			wp_enqueue_script( $this->token . '_passport_alert_modal_js');
 			wp_script_add_data( $this->token . '_passport_alert_modal_js', 'data-script-justification', 'Support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
+		} else {
+			// these are for the old forms
+			wp_register_script( 'wnet_everyaction_wp-legacy_js' , $this->assets_url . 'js/legacy-ea-donate-form.js', array('jquery'), $this->version, true );
+			wp_enqueue_script( 'wnet_everyaction_wp-legacy_js' );
+			wp_script_add_data('wnet_everyaction_wp-legacy_js',  'data-script-justification', 'Legacy support file required for WNET-EveryAction-WP-CSS-and-JS plugin.');
+			wp_enqueue_style( 'wnet_everyaction_wp-legacy_css', $this->assets_url . 'css/legacy-ea-donate-form-themes-styles.css', null, $this->version);
 		}
 		if ('premium-checkout' == $post->post_name) {
 			// enqueue the pledge shim and pledge additional questions only on the pledge premium checkout form 
