@@ -36,7 +36,7 @@ const passPortInstantGratification = function (args) {
       console.log(response);
       var responsetxt; 
       if (typeof response.token !== 'undefined') {
-        responsetxt = '<div class="activate"><a href="' + activateurl + response.token + pbs_referrer_qs + '" target=_new><img style="display:inline;" src="' + imgurl + 'passport_icon.png" />&nbsp;<strong>Your donation qualifies for Passport, our on-demand member benefit. Click here now to activate your '+ station_nice_name + ' Passport benefit!</strong></a></div><p><br /><br /><i>Not ready to activate right now?  Look for an email from us with your activation code, or you can save this code for later:</i> <b>' + response.token + '</b></p>';
+        responsetxt = '<div class="activate"><a href="' + activateurl + response.token + pbs_referrer_qs + '" target=_new><img style="display:inline;" src="' + imgurl + 'passport_icon.png" />&nbsp;<strong>Your donation qualifies for Passport, our on-demand member benefit. Click here now to activate your '+ station_nice_name + ' Passport benefit!</strong></a></div><br /><br /><p><i>Not ready to activate right now?  Look for an email from us with your activation code, or you can save this code for later:</i> <b>' + response.token + '</b></p>';
       } else if (response.activated == true) {
         responsetxt = '<div class="login"><a href="' + watchurl + '"><img style="display:inline;" src="' + imgurl + 'passport_icon.png">&nbsp;You have already activated your '+ station_nice_name + ' Passport access. Click here to login</a></div>';
       } else {
