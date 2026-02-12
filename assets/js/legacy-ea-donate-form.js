@@ -9,10 +9,20 @@
 ******************
 ******************/
 
-var nvtag_callbacks = nvtag_callbacks || {};
+// var nvtag_callbacks = nvtag_callbacks || {};
+// nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
+// window.nvtag_callbacks.alterErrors = window.nvtag_callbacks.alterErrors || [];
+// window.nvtag_callbacks.alterRequireValid = window.nvtag_callbacks.alterRequireValid || [];
+
+
+window.nvtag_callbacks = window.nvtag_callbacks || {};
+var nvtag_callbacks = window.nvtag_callbacks;
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
-window.nvtag_callbacks.alterErrors = window.nvtag_callbacks.alterErrors || [];
-window.nvtag_callbacks.alterRequireValid = window.nvtag_callbacks.alterRequireValid || [];
+nvtag_callbacks.alterFormDefinition= nvtag_callbacks.alterFormDefinition|| [];
+nvtag_callbacks.alterErrors = nvtag_callbacks.alterErrors || [];
+nvtag_callbacks.alterRequireValid = nvtag_callbacks.alterRequireValid || [];
+nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
+nvtag_callbacks.postContributionAmountChanged || [];
 
 // Assign theme color to the selected amount button
 const selectedAmtBtn = function () {
@@ -94,3 +104,22 @@ const initpostRender = function (args) {
 // nvtag_callbacks.postRender
 // nvtag_callbacks.postRender.push(editPrefix);
 nvtag_callbacks.postRender.push(initpostRender);
+
+
+let displayPayWithCreditCard = function(args) {
+
+    if (args.form_definition && args.form_definition.type === 'ContributionForm' && args.thank === false) {  
+      // @ts-ignore
+      $(document).ready(function() {
+        const cc_radio_id = $(`div.at-btn-radio-wrapper.at-credit-card-button-wrapper > label`);
+        // const cc_radio_id = $(`#creditcard_radio_${window.formID} + label .at-btn-radio.large`);
+      // console.log(cc_radio_id);
+        setTimeout(() => {
+          cc_radio_id.click();
+        },500);  
+      });
+    } 
+  return args;
+}  
+
+nvtag_callbacks.postRender.push(displayPayWithCreditCard);

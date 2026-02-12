@@ -1268,3 +1268,8 @@ input#toggleCheckbox:hover {
   align-items: center;
   float: none;
 }
+
+.at.ngp-form .at-radio-set-buttons.at-align-flex-right {
+    justify-content: flex-start;
+    -webkit-box-pack: start;
+}
