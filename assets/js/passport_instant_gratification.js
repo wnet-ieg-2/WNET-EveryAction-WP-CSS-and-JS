@@ -77,7 +77,7 @@ const passPortInstantGratification = function (args) {
 
   
 	// optionally set the activation url, for PBS.org-initiated donations, also a span on the ty page
-	var activateurl = '/pbsoauth/activate/?activation_token=';
+	var activateurl = passport_host + '/pbsoauth/activate/?activation_token=';
 	if ($('#activation_url').length) {
 		activateurl = $('#activation_url').text();
 	}
