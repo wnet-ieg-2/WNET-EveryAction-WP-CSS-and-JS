@@ -40,7 +40,6 @@ body {
 
 }
 
-
 .st-WNET {
   /* 007DA3 */
   --button-selected-bg-color: #007DA3;
@@ -67,17 +66,21 @@ body {
 
 .st-THIRTEEN {
   /* 007DA3 */
+  --committee-primary-color: #b51f22;
+  --committee-secondary-color: #007DA3;
   --committee-main-color: #b51f22;
-  --button-selected-bg-color: #007DA3;
-  --build-page-content-anchor: #007DA3;
-  --amount-selected-bg: #007DA3;
-  --amount-selected-bg-hover: #007DA3;
-  --btn-at-primary: #007DA3;
+  --button-selected-bg-color: var(--committee-secondary-color);
+  --build-page-content-anchor: var(--committee-secondary-color);
+  --build-page-content-anchor-hover: #1777cc;
+  --amount-selected-bg: var(--committee-secondary-color);
+  --amount-selected-bg-hover: var(--committee-secondary-color);
+  --btn-at-primary: var(--committee-secondary-color);
   --btn-at-primary-hover: #2538c4;
   --copy-color: #000000;
   --font-family-primary: Arial, Helvetica, sans-serif;
   --pp-cuslb-bg: #007DA3;
   --pp-cuslb-btn-bg: var(--committee-main-color);
+  --pp-cuslb-btn-text-hover: var(--committee-primary-color);
   --pp-cuslb-btn-bg-hover: #ffffff;
 
 }
@@ -143,6 +146,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  color: var(--build-page-content-anchor-hover);
 }
 
 /*************
@@ -157,6 +161,21 @@ a:hover {
   max-width: 1080px;
   background-color: #ffffff;
   font-family: var(--font-family-primary);
+}
+
+.at.ngp-form p {
+  font-size: var(--font-size-body);
+  margin-bottom: var(--spacing-standard);
+}
+
+.at.ngp-form a {
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+.at.ngp-form a:hover {
+  text-decoration: none;
+  color: var(--build-page-content-anchor-hover);
 }
 
 .at-fields {
@@ -570,8 +589,17 @@ div.at-radios.clearfix {
 
 /* Member ID */
 
-input[title="Member ID"] {
-  min-width: 50%;
+.at.ngp-form input[title="Member ID"] {
+    width: 240px;
+}
+
+/* at-checkbox-title anchor */
+.at.ngp-form .at-checkbox-title a {
+  font-weight: bold;
+  color: var(--build-page-content-anchor);
+}
+.at.ngp-form .at-checkbox-title a:hover {
+  color: var(--build-page-content-anchor-hover);
 }
 
 /* Tributes & Gift Memberships  */
