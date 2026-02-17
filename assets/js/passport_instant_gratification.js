@@ -38,13 +38,13 @@ const passPortInstantGratification = function (args) {
       if (typeof response.token !== 'undefined') {
         responsetxt = '<div class="activate"><a href="' + activateurl + response.token + pbs_referrer_qs + '" target=_new><img style="display:inline;" src="' + imgurl + 'passport_icon.png" />&nbsp;<strong>Your donation qualifies for Passport, our on-demand member benefit. Click here now to activate your '+ station_nice_name + ' Passport benefit!</strong></a></div><br /><br /><p><i>Not ready to activate right now?  Look for an email from us with your activation code, or you can save this code for later:</i> <b>' + response.token + '</b></p>';
       } else if (response.activated == true) {
-        responsetxt = '<div class="login"><a href="' + watchurl + '"><img style="display:inline;" src="' + imgurl + 'passport_icon.png">&nbsp;You have already activated your '+ station_nice_name + ' Passport access. Click here to login</a></div>';
+        responsetxt = '<div class="login"><a href="' + watchurl + '"><img style="display:inline;" src="' + imgurl + 'passport_icon.png">&nbsp;<strong>You have already activated your '+ station_nice_name + ' Passport access. Click here to login</strong></a></div>';
       } else {
         if (typeof response.errors !== 'undefined') {
           if (response.errors == 'multiple accounts') {
             responsetxt = "<p>There is already an account on record with your email address that has access to " + station_nice_name + " Passport, and you should already have received an email with your login info.</p>";
           } else {
-            responsetxt = '<div class="error"><img align="left" src="' + imgurl + 'passport_icon.png">&nbsp;We were unable to create your '+ station_nice_name + ' Passport account because of the following error: <br />' + response.errors + "</div>";
+            responsetxt = '<div class="error"><img align="left" src="' + imgurl + 'passport_icon.png">&nbsp;<strong>We were unable to create your '+ station_nice_name + ' Passport account because of the following error:</strong><br />' + response.errors + "</div>";
           }
         }
       }
