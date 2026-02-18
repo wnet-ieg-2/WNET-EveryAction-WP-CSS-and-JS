@@ -35,8 +35,10 @@ $('input[name="OtherAmount"]').on('blur', function () {
         // @ts-ignore
         if ($(this)[0].value === '0' && $(this).is(':checked') && otherAmount > 4.99 && otherAmount < 59.99) {
             if (!passPortAlertCalled) {
+            if ($('div#passPortAlertAmount').length) {
                 passPortAlertAmount(otherTotalAmount);
-                passPortAlertCalled = true;
+                passPortAlertCalled = true; 
+            }
             }
         }
     });
