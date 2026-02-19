@@ -87,40 +87,82 @@ body {
 
 .st-WLIW {
   /* 007DA3 */
-  --button-selected-bg-color: #007DA3;
-  --build-page-content-anchor: #007DA3;
-  --amount-selected-bg: #007DA3;
-  --amount-selected-bg-hover: #007DA3;
-  --btn-at-primary: #007DA3;
+  --committee-primary-color: #b51f22;
+  --committee-secondary-color: #007DA3;
+  --committee-main-color: #b51f22;
+  --button-selected-bg-color: var(--committee-secondary-color);
+  --build-page-content-anchor: var(--committee-secondary-color);
+  --build-page-content-anchor-hover: #1777cc;
+  --amount-selected-bg: var(--committee-secondary-color);
+  --amount-selected-bg-hover: var(--committee-secondary-color);
+  --btn-at-primary: var(--committee-secondary-color);
   --btn-at-primary-hover: #2538c4;
   --copy-color: #000000;
   --font-family-primary: Arial, Helvetica, sans-serif;
+  --pp-cuslb-bg: #007DA3;
+  --pp-cuslb-btn-bg: var(--committee-main-color);
+  --pp-cuslb-btn-text-hover: var(--committee-primary-color);
+  --pp-cuslb-btn-bg-hover: #ffffff;
 }
 
 .st-NJTV {
   /* 008A00 */
-  --button-selected-bg-color: #008A00;
+  /* --button-selected-bg-color: #008A00;
   --build-page-content-anchor: #008A00;
   --amount-selected-bg: #008A00;
   --amount-selected-bg-hover: #008A00;
   --btn-at-primary: #008A00;
   --btn-at-primary-hover: #2538c4;
   --copy-color: #000000;
+  --font-family-primary: Arial, Helvetica, sans-serif; */
+  --committee-primary-color: #008A00;
+  --committee-secondary-color: #008A00;
+  --committee-main-color: #008A00;
+  --button-selected-bg-color: var(--committee-secondary-color);
+  --build-page-content-anchor: var(--committee-secondary-color);
+  --build-page-content-anchor-hover: #1777cc;
+  --amount-selected-bg: var(--committee-secondary-color);
+  --amount-selected-bg-hover: var(--committee-secondary-color);
+  --btn-at-primary: var(--committee-secondary-color);
+  --btn-at-primary-hover: #2538c4;
+  --copy-color: #000000;
   --font-family-primary: Arial, Helvetica, sans-serif;
+  --pp-cuslb-bg: #008A00;
+  --pp-cuslb-btn-bg: var(--committee-main-color);
+  --pp-cuslb-btn-text-hover: var(--committee-primary-color);
+  --pp-cuslb-btn-bg-hover: #ffffff;
+
+
 }
 
 .allarts {
   /* CE66DD  */
-  --button-selected-bg-color: #CE66DD;
+  /* --button-selected-bg-color: #CE66DD;
   --build-page-content-anchor: #CE66DD;
   --amount-selected-bg: #CE66DD;
   --amount-selected-bg-hover: #CE66DD;
   --btn-at-primary: #CE66DD;
   --btn-at-primary-hover: #2538c4;
   --copy-color: #000000;
+  --font-family-primary: Arial, Helvetica, sans-serif; */
+  --committee-primary-color: #CE66DD;
+  --committee-secondary-color: #CE66DD;
+  --committee-main-color: #CE66DD;
+  --button-selected-bg-color: var(--committee-secondary-color);
+  --build-page-content-anchor: var(--committee-secondary-color);
+  --build-page-content-anchor-hover: #1777cc;
+  --amount-selected-bg: var(--committee-secondary-color);
+  --amount-selected-bg-hover: var(--committee-secondary-color);
+  --btn-at-primary: var(--committee-secondary-color);
+  --btn-at-primary-hover: #2538c4;
+  --copy-color: #000000;
   --font-family-primary: Arial, Helvetica, sans-serif;
-}
+  --pp-cuslb-bg: #CE66DD;
+  --pp-cuslb-btn-bg: var(--committee-main-color);
+  --pp-cuslb-btn-text-hover: var(--committee-primary-color);
+  --pp-cuslb-btn-bg-hover: #ffffff;
 
+}
 
 h1,
 h2,
