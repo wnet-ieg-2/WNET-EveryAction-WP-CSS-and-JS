@@ -87,9 +87,9 @@ body {
 
 .st-WLIW {
   /* 007DA3 */
-  --committee-primary-color: #b51f22;
+  --committee-primary-color: #007DA3;
   --committee-secondary-color: #007DA3;
-  --committee-main-color: #b51f22;
+  --committee-main-color: #007DA3;
   --button-selected-bg-color: var(--committee-secondary-color);
   --build-page-content-anchor: var(--committee-secondary-color);
   --build-page-content-anchor-hover: #1777cc;
