@@ -100,7 +100,7 @@ body {
   --copy-color: #000000;
   --font-family-primary: Arial, Helvetica, sans-serif;
   --pp-cuslb-bg: #007DA3;
-  --pp-cuslb-btn-bg: var(--committee-main-color);
+  --pp-cuslb-btn-bg: #004157;
   --pp-cuslb-btn-text-hover: var(--committee-primary-color);
   --pp-cuslb-btn-bg-hover: #ffffff;
 }
