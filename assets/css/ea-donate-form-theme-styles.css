@@ -6,7 +6,7 @@
  * This stylesheet defines the visual presentation for the 2026 MWD WNET Main Theme, which is used across various donation forms and pages. It includes styles for form elements, buttons, and layout to ensure a cohesive and user-friendly experience for donors.
  *
  * Version: 1.0.0
- * Last Updated: 2026-19-02
+ * Last Updated: 2026-15-04
  * 
  *
  */
@@ -54,14 +54,22 @@ body {
 
 .st-NantionFundraising {
   /* 007DA3 */
-  --button-selected-bg-color: #007DA3;
-  --build-page-content-anchor: #007DA3;
-  --amount-selected-bg: #007DA3;
-  --amount-selected-bg-hover: #007DA3;
-  --btn-at-primary: #007DA3;
+  --committee-primary-color: #007DA3;
+  --committee-secondary-color: #007DA3;
+  --committee-main-color: #007DA3;
+  --button-selected-bg-color: var(--committee-secondary-color);
+  --build-page-content-anchor: var(--committee-secondary-color);
+  --build-page-content-anchor-hover: #1777cc;
+  --amount-selected-bg: var(--committee-secondary-color);
+  --amount-selected-bg-hover: var(--committee-secondary-color);
+  --btn-at-primary: var(--committee-secondary-color);
   --btn-at-primary-hover: #2538c4;
   --copy-color: #000000;
   --font-family-primary: Arial, Helvetica, sans-serif;
+  --pp-cuslb-bg: #01b2ff;
+  --pp-cuslb-btn-bg: #004157;
+  --pp-cuslb-btn-text-hover: var(--committee-primary-color);
+  --pp-cuslb-btn-bg-hover: #ffffff;
 }
 
 .st-THIRTEEN {
@@ -82,7 +90,6 @@ body {
   --pp-cuslb-btn-bg: var(--committee-main-color);
   --pp-cuslb-btn-text-hover: var(--committee-primary-color);
   --pp-cuslb-btn-bg-hover: #ffffff;
-
 }
 
 .st-WLIW {
@@ -107,14 +114,6 @@ body {
 
 .st-NJTV {
   /* 008A00 */
-  /* --button-selected-bg-color: #008A00;
-  --build-page-content-anchor: #008A00;
-  --amount-selected-bg: #008A00;
-  --amount-selected-bg-hover: #008A00;
-  --btn-at-primary: #008A00;
-  --btn-at-primary-hover: #2538c4;
-  --copy-color: #000000;
-  --font-family-primary: Arial, Helvetica, sans-serif; */
   --committee-primary-color: #008A00;
   --committee-secondary-color: #008A00;
   --committee-main-color: #008A00;
@@ -131,21 +130,11 @@ body {
   --pp-cuslb-btn-bg: var(--committee-main-color);
   --pp-cuslb-btn-text-hover: var(--committee-primary-color);
   --pp-cuslb-btn-bg-hover: #ffffff;
-
-
 }
 
 .allarts {
   /* CE66DD  */
   /* #a40022 */
-  /* --button-selected-bg-color: #CE66DD;
-  --build-page-content-anchor: #CE66DD;
-  --amount-selected-bg: #CE66DD;
-  --amount-selected-bg-hover: #CE66DD;
-  --btn-at-primary: #CE66DD;
-  --btn-at-primary-hover: #2538c4;
-  --copy-color: #000000;
-  --font-family-primary: Arial, Helvetica, sans-serif; */
   --committee-primary-color: #CE66DD;
   --committee-secondary-color: #CE66DD;
   --committee-main-color: #CE66DD;
@@ -162,7 +151,6 @@ body {
   --pp-cuslb-btn-bg: var(--committee-main-color);
   --pp-cuslb-btn-text-hover: var(--committee-primary-color);
   --pp-cuslb-btn-bg-hover: #ffffff;
-
 }
 
 h1,
@@ -651,6 +639,10 @@ div.at-radios.clearfix {
   display: flex;
 }
 
+.at.ngp-form fieldset.TributeGift{
+  padding: 0 20px 20px;
+}
+
 div.at-row.at-row-full.EnableTributeGift {
   display: none;
 }
@@ -665,10 +657,14 @@ div.at-row.at-row-full.EnableTributeGift {
   margin-bottom: 10px;
   text-align: center;
   margin: 0;
-  color: var(--amount-selected-color-default);
+  color: var(--btn-at-primary);
   border: 2px solid #999999;
 }
 
+
+label.at-radio-label-1 {
+  margin-left: 20px !important;
+}
 
 label.at-radio-label-1 {
   margin-left: 20px !important;
@@ -683,12 +679,16 @@ textarea[name="NotificationMessage"] {
   min-height: 150px;
 }
 
+input[name="InHonorOrInMemoryOf"] {
+  margin: 0 !important;
+}
+
 .at.ngp-form label.honorChecked,
 label.honorChecked,
 .honorChecked {
-  background-color: var(--button-selected-bg-color);
-  color: var(--amount-selected-color);
-  border: 2px solid var(--button-selected-bg-color);
+  background-color: var(--btn-at-primary);
+  color: var(--color-black);
+  border: 2px solid var(--btn-at-primaryr);
 }
 
 
@@ -808,3 +808,4 @@ Embedded Styles
     margin: 0 !important;
   }
 }
+
