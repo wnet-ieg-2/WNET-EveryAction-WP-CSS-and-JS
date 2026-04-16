@@ -7,12 +7,12 @@
 ******************
 ******************
 ******************/
-// Ensure nvtag_callbacks.preSegue exists
-nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
+// Ensure nvtag_callbacks.postRender exists
+nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
 
 // @ts-ignore
 const passPortInstantGratification = function (args) {
-
+  if (args && args.thank === true) {
   function createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs, activateurl, instant_grat_ajaxurl, imgurl, watchurl) {
     $('#mvault_status_window').html('<div class="loading"><p><img src="' + imgurl + 'loading.gif" style="width:1em;" />&nbsp;Creating ' + station_nice_name + ' Passport Account...</p></div>');
     // @ts-ignore
@@ -74,8 +74,6 @@ const passPortInstantGratification = function (args) {
     var xv = 'skip';
     var station_nice_name = $('#station_name').text();
 
-
-  
 	// optionally set the activation url, for PBS.org-initiated donations, also a span on the ty page
 	var activateurl = passport_host + '/pbsoauth/activate/?activation_token=';
 	if ($('#activation_url').length) {
@@ -109,7 +107,6 @@ const passPortInstantGratification = function (args) {
     }
   }
 
-  $(function() {
   // handling the PBS return path var
   // @ts-ignore
   if (typeof pbs_referrer === 'undefined') {
@@ -119,13 +116,13 @@ const passPortInstantGratification = function (args) {
      pbs_referrer_qs = '/?return_path=' + pbs_referrer;
   }
     checkForAmountThenCreateMember();
-  });
 
-  console.log('preSegue: passPortInstantGratification', args);
+    console.log('postRender: passPortInstantGratification', args);
+  }
 
   return args;
 
 };
 
 // nvtag_callbacks.postRender
-nvtag_callbacks.preSegue.push(passPortInstantGratification);
+nvtag_callbacks.postRender.push(passPortInstantGratification);
