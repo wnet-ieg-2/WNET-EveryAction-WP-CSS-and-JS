@@ -1,4 +1,12 @@
-// Passport Up Sell Light Box
+/******************
+******************
+******************
+***
+*** passport_cuslb_modal - 04/20/2026.01
+***
+******************
+******************
+******************/
 const addCUSLBBtn = function (args) {
   if ($('div#uslb').length) {
     // Get Main Submit Button and Give it an Id
@@ -120,4 +128,4 @@ $(document).on('click', 'button#decline', function (e) {
   e.preventDefault();
 });
 
-console.log('Passport CUSLB Modal: On');
+console.log('passport_cuslb_modal.js loaded');

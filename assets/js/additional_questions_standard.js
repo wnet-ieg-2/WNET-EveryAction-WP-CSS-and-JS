@@ -385,7 +385,6 @@ return args;
 
     return args;
 
-    console.log('WNET-Patrons Main-AQ-HSWAY')
   };
 
   nvtag_callbacks.postRender.push(moveSustainerMemberField);
@@ -398,3 +397,4 @@ return args;
   nvtag_callbacks.postRender.push(statusAutoRenewalFrequency);
   nvtag_callbacks.postRender.push(moveMemberID);
   nvtag_callbacks.postRender.push(howShouldWeAcknowledgeYou);
+  console.log('additional_questions_standard.js loaded');

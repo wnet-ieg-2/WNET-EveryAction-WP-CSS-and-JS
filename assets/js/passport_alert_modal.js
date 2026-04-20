@@ -1,3 +1,13 @@
+/******************
+******************
+******************
+***
+*** passport_alert_modal - 04/20/2026.01
+***
+******************
+******************
+******************/
+
 // Passport Alert Modal for One-Time Donations between $5 and $59.99
 // Ensure the global callback array exists
 window.nvtag_callbacks = window.nvtag_callbacks || {};
@@ -46,4 +56,4 @@ $('input[name="OtherAmount"]').on('blur', function () {
 
 });
 
-console.log('Passport Alert Modal: On');
+console.log('passport_alert_modal.js loaded');

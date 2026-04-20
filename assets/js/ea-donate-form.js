@@ -2,7 +2,7 @@
 ******************
 ******************
 ***
-*** 2026_WNET_Main_Theme_Form_Initializer - 07/19/2024.01
+*** ea-donate-form - 04/20/2026.01
 ***
 ******************
 ******************
@@ -167,3 +167,4 @@ let displayPayWithCreditCard = function(args) {
 }  
 
 nvtag_callbacks.postRender.push(displayPayWithCreditCard);
+console.log('ea-donate-form.js loaded');

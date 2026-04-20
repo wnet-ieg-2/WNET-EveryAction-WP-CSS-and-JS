@@ -2,15 +2,12 @@
 ******************
 ******************
 ***
-*** 2026 WNET Main Theme AQ E-Store JS Reusable - 04/20/2026.01
+*** additional_questions_estore - 04/20/2026.01
 ***
 ******************
 ******************
 ******************/
 
-
-
-  
   const moveAQ = function (args) {
   
     let { formID, additionalQuestion } = initializeFormVariables(args);
@@ -151,5 +148,5 @@
   
   nvtag_callbacks.postRender.push(handleFrequencyChange);
   
-  console.log('E-Store-AQ.html');
+  console.log('additional_questions_estore.js loaded');
   
