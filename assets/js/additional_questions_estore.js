@@ -2,7 +2,7 @@
 ******************
 ******************
 ***
-*** 2026 WNET Main Theme AQ E-Store JS Reusable
+*** 2026 WNET Main Theme AQ E-Store JS Reusable - 04/20/2026.01
 ***
 ******************
 ******************
@@ -116,7 +116,7 @@
               autoCheckBox.prop('checked', false);
               autoCheckBoxLabel.show();
               submitButton.prop('disabled', true);
-              sustainerUpdate.show();
+              sustainerUpdate.hide();
             } else if (frequencyValue === '0') {
               autoCheckBox.prop('checked', false);
               autoCheckBoxLabel.hide();

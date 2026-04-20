@@ -1,6 +1,6 @@
 /*
  * ===============================================
- * 2026 MWD WNET Main Theme Styles
+ * 2026 MWD WNET Main Theme Styles - 04/20/2026.01
  * ===============================================
  *
  * This stylesheet defines the visual presentation for the 2026 MWD WNET Main Theme, which is used across various donation forms and pages. It includes styles for form elements, buttons, and layout to ensure a cohesive and user-friendly experience for donors.
@@ -589,6 +589,7 @@ div.at-radios.clearfix {
 
 .at.ngp-form .btn-at-primary {
   display: flex;
+  color: var(--color-white);
   background-color: var(--btn-at-primary);
   font-size: 38px;
   padding: 16px 10px;
@@ -809,3 +810,10 @@ Embedded Styles
   }
 }
 
+a#signup-hustle-fastaction-actionid, #signup-hustle-fastaction-actionid{
+  color: var(--color-white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
