@@ -3,7 +3,7 @@
 ******************
 ******************
 ***
-*** additional_questions_standard
+*** additional_questions_standard - 04/20/2026.01
 ***
 ******************
 ******************
@@ -45,7 +45,7 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
             // @ts-ignore
             let frequencyValue = $(this).val();
             if (frequencyValue === '4') {
-              sustainerMember.show();
+              sustainerMember.hide();
               sustainerMember.find('input').prop('checked', false);
             } else if (frequencyValue === '0') {
               sustainerMember.hide();
@@ -385,7 +385,6 @@ return args;
 
     return args;
 
-    console.log('WNET-Patrons Main-AQ-HSWAY')
   };
 
   nvtag_callbacks.postRender.push(moveSustainerMemberField);
@@ -398,3 +397,4 @@ return args;
   nvtag_callbacks.postRender.push(statusAutoRenewalFrequency);
   nvtag_callbacks.postRender.push(moveMemberID);
   nvtag_callbacks.postRender.push(howShouldWeAcknowledgeYou);
+  console.log('additional_questions_standard.js loaded');
