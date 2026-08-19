@@ -3,7 +3,7 @@
 ******************
 ******************
 ***
-*** additional_questions_standard - 04/20/2026.01
+*** additional_questions_standard - 08/18/2026.01
 ***
 ******************
 ******************
@@ -17,18 +17,18 @@ nvtag_callbacks.alterRequireValid = nvtag_callbacks.alterRequireValid || [];
 nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 
   // Move I'm a current sustaining member and I'm updating my information
-  // @ts-ignore
+  
   const moveSustainerMemberField = function (args) {
       if (args && args.thank === false) { // Check if we're not on the thank you page
-    // @ts-ignore
+    
     $(document).ready(function () {
-      // @ts-ignore
+      
       if (!window.additionalQuestion || !window.additionalQuestion[0]) {
         return; // Exit if additionalQuestion is empty
       }
-      // @ts-ignore
+      
       let sustainerMember = $('.at-row.at-row-full.' + window.additionalQuestion[0].name);
-      // @ts-ignore
+      
       let firstName = $('.at-row.FirstName.LastName').closest('.at-row');
   
       if (sustainerMember.length && firstName.length) {
@@ -37,12 +37,12 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
   
       // Function to handle frequency changes
       function handleFrequencyChange() {
-        // @ts-ignore
+        
         let frequency = $('input[name="SelectedFrequency"]');
         frequency.each(function () {
-          // @ts-ignore
+          
           if ($(this).is(':checked')) {
-            // @ts-ignore
+            
             let frequencyValue = $(this).val();
             if (frequencyValue === '4') {
               sustainerMember.hide();
@@ -58,7 +58,7 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
       // Initial check
       handleFrequencyChange();
       // Bind change event
-      // @ts-ignore
+      
       $('input[name="SelectedFrequency"]').on('change', handleFrequencyChange);
     }); // End of document ready
   } // Not on the thank you page
@@ -68,15 +68,15 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 
   // Move Yes, I would like to receive emails from WNET/ALL ARTS
   const moveRecieveEmailsField = function (args) {
-    // @ts-ignore
+    
     $(document).ready(function () {
-      // @ts-ignore
+      
       if (!window.additionalQuestion || !window.additionalQuestion[1]) {
         return; // Exit if additionalQuestion doesn't have index 1
       }
-      // @ts-ignore
+      
       let receiveEmails = $('.at-row.at-row-full.' + window.additionalQuestion[1].name);
-      // @ts-ignore
+      
       let targetField = $('#NVContributionForm' + window.formID + '-ContactInformation .at-fields');
   
       if (receiveEmails.length && targetField.length) {
@@ -89,15 +89,15 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 
   // Move Yes, I would like to receive texts from WNET/ALL ARTS
   const moveReceiveTextsField = function (args) {
-    // @ts-ignore
+    
     $(document).ready(function () {
-      // @ts-ignore
+      
       if (!window.additionalQuestion || !window.additionalQuestion[2]) {
         return; // Exit if additionalQuestion doesn't have index 2
       }
-      // @ts-ignore
+      
       let receiveTexts = $('.at-row.at-row-full.' + window.additionalQuestion[2].name);
-      // @ts-ignore
+      
       let targetField = $('#NVContributionForm' + window.formID + '-ContactInformation .at-fields');
   
       if (receiveTexts.length && targetField.length) {
@@ -111,15 +111,15 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 
   // Yes, I would like to be connected to my local PBS station
   const moveBeConnectedField = function (args) {
-    // @ts-ignore
+    
     $(document).ready(function () {
-      // @ts-ignore
+      
       if (!window.additionalQuestion || !window.additionalQuestion[3]) {
         return; // Exit if additionalQuestion doesn't have index 3
       }
-      // @ts-ignore
+      
       let beConnected = $('.at-row.at-row-full.' + window.additionalQuestion[3].name);
-      // @ts-ignore
+      
       let targetField = $('#NVContributionForm' + window.formID + '-ContactInformation .at-fields');
   
       if (beConnected.length && targetField.length) {
@@ -131,43 +131,71 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
   };
 
 
-    // Update the text for the auto renewal subscription
-  const updateAutoRenewalSubscriptionLabel = function (args) {
-      // @ts-ignore
-      if (!window.additionalQuestion || !window.additionalQuestion[4]) {
-        return; // Exit if additionalQuestion doesn't have index 4
-      }
-    // @ts-ignore
-    $(document).ready(function () {
-      // @ts-ignore     
-      let emailCopy = `<a href='mailto:membership@wnet.org'>membership@wnet.org</a> or by calling 212-560-2888.`;
-      let urlAdd = `You also acknowledge and agree to the full Terms of Service located at <a href='https://www.wnet.org/about/terms-of-service/' target='_blank'>https://www.wnet.org/about/terms-of-service/</a>`;
-      // @ts-ignore
-      let mainCopy = $('#' + 'NVContributionForm' + window.formID + '-AdditionalInformation-' + window.additionalQuestion[4].name + '-label').html();
-      // @ts-ignore
-      let label = $('#' + 'NVContributionForm' + window.formID + '-AdditionalInformation-' + window.additionalQuestion[4].name + '-label');
-      // Update the HTML content of the label element
-      label.html(mainCopy + ' ' + emailCopy + ' ' + urlAdd);
-    }); // End of document ready
-  
-    return args;
-  };
+      // Update Checkbox Label for Auto Renewal Subscription
+      const updateAutoRenewalSubscriptionLabel = function (args) {
 
+        if (args && args.thank === false) { // Check if we're not on the thank you page
+
+        if (!window.additionalQuestion || !window.additionalQuestion[4]) {
+          return args;
+        }
+
+        const designationId = args.form_definition.designation.designationId;
+        const designationName = args.form_definition.designation.name; // Assuming the designationId is stored in the name property
+        const designationOfficialName = args.form_definition.designation.officialName; // Assuming the designationId is stored in the name property
+        
+        const portalUrls = {
+          52: 'https://www.thirteen.org/portal',
+          51: 'https://www.wliw.org/portal',
+          53: 'https://www.allarts.org/portal',
+          54: 'https://www.allarts.org/portal',
+        };
+
+        const portalUrl = portalUrls[designationId];
+
+        const labelId = 'NVContributionForm' + window.formID + '-AdditionalInformation-' + window.additionalQuestion[4].name + '-label';
+
+        const label = document.getElementById(labelId);
+
+        if (!label) {
+          return args;
+        }
+
+        // Avoid appending the extra paragraph more than once if postRender fires repeatedly.
+        if (label.dataset.autoRenewalCopyInjected === 'true') {
+          return args;
+        }
+
+        const mainCopy = label.innerHTML || '';
+
+        const additionalCopy = ` You can cancel any time${portalUrl ? ` at <a href="${portalUrl}" target="_blank" rel="noopener noreferrer">${portalUrl}</a>.` : '.'} You also acknowledge and agree to the full Terms of Service located at <a href="https://www.wnet.org/about/terms-of-service/" target="_blank" rel="noopener noreferrer">Terms of Service | The WNET Group</a>.`;
+
+        label.innerHTML = `${mainCopy} ${additionalCopy}`;
+        label.dataset.autoRenewalCopyInjected = 'true';
+
+        console.log('Auto Renewal Subscription label updated for designationId:', designationId);
+        console.log('Auto Renewal Subscription label updated for designationName:', designationName);
+        console.log('Auto Renewal Subscription label updated for designationOfficialName:', designationOfficialName);
+
+          }
+
+        return args;
+      };
 
     const onLoadAutoRenewalSubscriptionLabel = function (args) {
     function onLoadCheck() {
-      // @ts-ignore
+      
       if (!window.additionalQuestion || !window.additionalQuestion[4]) {
         return; // Exit if additionalQuestion doesn't have index 4
       }
-      // @ts-ignore
+      
       let autoCheckBox = $("input[name=" + window.additionalQuestion[4].name + "]");
-      // @ts-ignore
+      
       let label = $('.' + window.additionalQuestion[4].name);
-      // @ts-ignore
+      
       $("input[name=SelectedFrequency]").each(function () {
         // Monthly
-        // @ts-ignore
+        
         if ($(this)[0].value === '4' && $(this).is(':checked')) {
           if (autoCheckBox.is(':checked') === true) {
             // console.log(`On Load: Monthly`);
@@ -175,7 +203,7 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
         }
   
         // One-Time
-        // @ts-ignore
+        
         if ($(this)[0].value === '0' && $(this).is(':checked')) {
           if (autoCheckBox.is(':checked') === true) {
             label.hide();
@@ -190,47 +218,47 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
   };
 
   const statusAutoRenewalSubscriptionLabel = function(args){        
-    // @ts-ignore
+    
     if (!window.additionalQuestion || !window.additionalQuestion[4]) {
       return args; // Exit if additionalQuestion doesn't have index 4
     }
-    // @ts-ignore
+    
     let autoCheckBox = $("input[name=" + window.additionalQuestion[4].name + "]");
     function handleCheckBoxLabel() {
       if(autoCheckBox.is(':checked') === true ){
-        // @ts-ignore
+        
         $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
       } else {
-        // @ts-ignore
+        
         $('input.at-submit.btn-at.btn-at-primary').prop('disabled', true);
       }    
    }
-  // @ts-ignore
+  
   $('label.'+window.additionalQuestion[4].name).on('change click', handleCheckBoxLabel);
   
    return args;
   };
   
   const statusAutoRenewalFrequency = function(args){   
-    // @ts-ignore
+    
     if (!window.additionalQuestion || !window.additionalQuestion[4]) {
       return args; // Exit if additionalQuestion doesn't have index 4
     }
-    // @ts-ignore
+    
     let autoCheckBox = $("input[name=" + window.additionalQuestion[4].name + "]");
     
     function handleCheckBoxLabel() {
-      // @ts-ignore
+      
       $("input[name=SelectedFrequency]").each(function () {
         // Monthly
-        // @ts-ignore
+        
         if ($(this)[0].value === '4' && $(this).is(':checked')) {
           if (autoCheckBox.is(':checked') === true) {
           }
         }
   
         // One-Time
-        // @ts-ignore
+        
         if ($(this)[0].value === '0' && $(this).is(':checked')) {
           if (autoCheckBox.is(':checked') === true) {
             autoCheckBox.prop('checked', false); // Uncheck the checkbox
@@ -239,7 +267,7 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
       });
    }
   
-  // @ts-ignore
+  
   $('label.at-radio-label-0,label.at-radio-label-4' ).on('change click', handleCheckBoxLabel);
   
    return args;
@@ -249,26 +277,26 @@ nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
     // Handle Auto Renewal Subscription Checkbox
 window.nvtag_callbacks.alterRequireValid.push(function (args) {
   // Check if additionalQuestion exists and has the required index
-  // @ts-ignore
+  
   if (!window.additionalQuestion || !window.additionalQuestion[4]) {
     return args;
   }
   // create a jquery document ready function
-    // @ts-ignore
+    
     $(document).ready(function() {
-      // @ts-ignore
+      
       let checkboxLabel = $('.' + window.additionalQuestion[4].name);
-      // @ts-ignore
+      
       let autoCheckBox = $("input[name=" + window.additionalQuestion[4].name + "]");
       // Check Frequency
       if (args.field_name === 'SelectedFrequency' && args.val === '0') {
-        // @ts-ignore
+        
         $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
         checkboxLabel.hide();
         // console.log(`On AlterRequired: One-Time`);
       } else if (args.field_name === 'SelectedFrequency' && args.val === '4') {
         autoCheckBox.prop('checked', false); // Uncheck the checkbox
-        // @ts-ignore
+        
         $('input.at-submit.btn-at.btn-at-primary').prop('disabled', true);
         checkboxLabel.show();
         // console.log(`On AlterRequired: Monthly`);
@@ -285,26 +313,26 @@ window.nvtag_callbacks.alterRequireValid.push(function (args) {
 nvtag_callbacks.alterFormDefinition.push(function (args) {
   
   // Check if additionalQuestion exists and has the required index
-  // @ts-ignore
+  
   if (!window.additionalQuestion || !window.additionalQuestion[4]) {
     return args;
   }
   // create a jquery document ready function
-    // @ts-ignore
+    
     $(document).ready(function() {
-      // @ts-ignore
+      
       let checkboxLabel = $('.' + window.additionalQuestion[4].name);
-      // @ts-ignore
+      
       let autoCheckBox = $("input[name=" + window.additionalQuestion[4].name + "]");
       // Check Frequency
       if (args.field_name === 'SelectedFrequency' && args.val === '0') {
-        // @ts-ignore
+        
         $('input.at-submit.btn-at.btn-at-primary').prop('disabled', false);
         checkboxLabel.hide();
         // console.log(`On AlterRequired: One-Time`);
       } else if (args.field_name === 'SelectedFrequency' && args.val === '4') {
         autoCheckBox.prop('checked', false); // Uncheck the checkbox
-        // @ts-ignore
+        
         $('input.at-submit.btn-at.btn-at-primary').prop('disabled', true);
         checkboxLabel.show();
         // console.log(`On AlterRequired: Monthly`);
@@ -317,18 +345,18 @@ return args;
 
  const moveMemberID = function (args) {
 
-    // @ts-ignore
+    
     if (!window.additionalQuestion || !window.additionalQuestion[0] || !window.additionalQuestion[5]) {
       return args;
     }
 
-    // @ts-ignore
+    
     $(document).ready(function() {
-      // @ts-ignore
+      
       let sustainerMember = $('div.at-row.at-row-full.' + window.additionalQuestion[0].name);
-      // @ts-ignore
+      
       let firstName = $('div.at-fields .at-row.FirstName.LastName');
-      // @ts-ignore
+      
       let memberID = $('div.at-row.at-row-full.'+ window.additionalQuestion[5].name);
       let memberIDInput = $('input[title="Member ID"]');
 
@@ -344,15 +372,13 @@ return args;
 
     const howShouldWeAcknowledgeYou = function (args) {
 
-    // @ts-ignore
     if (!window.additionalQuestion || !window.additionalQuestion[5] || !window.additionalQuestion || !window.additionalQuestion[6] || !window.additionalQuestion[7] || !window.additionalQuestion[8]) {
       return args;
     }
 
     $(document).ready(function() {
-      // @ts-ignore
+      
       let formID = window.formID;
-      // @ts-ignore
       let memberID = $('div.at-row.at-row-full.'+ window.additionalQuestion[5].name);
       // Hide memberID if additionalQuestions 6, 7, 8 are defined
       if (window.additionalQuestion[6] && window.additionalQuestion[7] && window.additionalQuestion[8]) {
@@ -360,7 +386,6 @@ return args;
       }
     });
 
-      // @ts-ignore
       let contributionInformation = $("fieldset#NVContributionForm" + formID + "-ContributionInformation");
 
       // create a fieldset with the id of hsway and the class of at-fieldset
@@ -381,7 +406,7 @@ return args;
       additionalChildren6Headline.appendTo(fieldset);
       additionalChildren5Input.appendTo(fieldset);
       additionalChildren5Checkbox.appendTo(fieldset);
-    };
+    }
 
     return args;
 

@@ -2,20 +2,22 @@
 ******************
 ******************
 ***
-*** 2026_MWD_WNET_Passport_Instant_Gratification.js 04/16/2026.01
+*** 2026_MWD_WNET_Passport_Instant_Gratification.js 08/18/2026
 ***
 ******************
 ******************
 ******************/
 // Ensure nvtag_callbacks.postRender exists
-nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
+window.nvtag_callbacks = window.nvtag_callbacks || {};
+window.nvtag_callbacks.postRender = window.nvtag_callbacks.postRender || [];
 
-// @ts-ignore
 const passPortInstantGratification = function (args) {
+
   if (args && args.thank === true) {
-  function createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs, activateurl, instant_grat_ajaxurl, imgurl, watchurl) {
+ 
+    function createProvisionalMembership(trans_id, first_name, last_name, email, xv, station_nice_name, pbs_referrer_qs, activateurl, instant_grat_ajaxurl, imgurl, watchurl) {
     $('#mvault_status_window').html('<div class="loading"><p><img src="' + imgurl + 'loading.gif" style="width:1em;" />&nbsp;Creating ' + station_nice_name + ' Passport Account...</p></div>');
-    // @ts-ignore
+    
     var ajax = $.ajax({
       type: "POST",
       url: instant_grat_ajaxurl,
@@ -49,7 +51,7 @@ const passPortInstantGratification = function (args) {
         }
       }
       $('#mvault_status_window').html(responsetxt);
-    // @ts-ignore
+    
     }).fail(function(response) {
       $('#mvault_status_window').html('<div class="error">Could not create '+ station_nice_name + ' Passport Account!</div>');
     });
@@ -83,16 +85,16 @@ const passPortInstantGratification = function (args) {
     // Luminate doesn't provide a decent way to filter for amount.
     var amount = 0;
     if ( $('#trans_amount').length ) {
-      // @ts-ignore
+      
       amount = $('#trans_amount').text();
-      // @ts-ignore
+      
       amount = Number(amount.replace(/[^0-9\.]+/g,""));
     }
     // sustainers have a frequency unit of 'months', all others dont
     if ( $('#trans_frequency_unit').length ) {
-      // @ts-ignore
+      
      var freq = $('#trans_frequency_unit').text();
-      // @ts-ignore
+      
       if ((freq == 'months') || (freq == 'monthly')) {
         amount = amount * 12;
       } 
@@ -108,21 +110,33 @@ const passPortInstantGratification = function (args) {
   }
 
   // handling the PBS return path var
-  // @ts-ignore
   if (typeof pbs_referrer === 'undefined') {
      pbs_referrer_qs = '';
   } else {
-    // @ts-ignore
+    
      pbs_referrer_qs = '/?return_path=' + pbs_referrer;
   }
-    checkForAmountThenCreateMember();
-
-    console.log('postRender: passPortInstantGratification', args);
+    // Wait for the thank you page elements to appear before running
+    function waitForElement(selector, callback, timeout = 10000) {
+      const startTime = Date.now();
+      const checkElement = () => {
+        if ($(selector).length) {
+          console.log('✅ Element found:', selector, '- running callback');
+          callback();
+        } else if (Date.now() - startTime < timeout) {
+          setTimeout(checkElement, 500); // Check every 500ms
+        } else {
+          console.log('❌ Timeout: Element', selector, 'never appeared');
+        }
+      };
+      checkElement();
+    }
+    
+    waitForElement('#transaction_id', checkForAmountThenCreateMember);
   }
 
   return args;
 
 };
 
-// nvtag_callbacks.postRender
 nvtag_callbacks.postRender.push(passPortInstantGratification);
