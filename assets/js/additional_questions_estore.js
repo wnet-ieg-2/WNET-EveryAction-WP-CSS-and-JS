@@ -2,7 +2,7 @@
 ******************
 ******************
 ***
-*** additional_questions_estore - 081826.00
+*** additional_questions_estore - 081826.01
 ***
 ******************
 ******************
@@ -45,7 +45,7 @@
 
         if (args && args.thank === false) { // Check if we're not on the thank you page
 
-        if (!window.additionalQuestion || !window.additionalQuestion[6]) {
+        if (!window.additionalQuestion || !window.additionalQuestion[4]) {
           return args;
         }
 
@@ -56,13 +56,11 @@
         const portalUrls = {
           52: 'https://www.thirteen.org/portal',
           51: 'https://www.wliw.org/portal',
-          53: 'https://www.allarts.org/portal',
-          54: 'https://www.allarts.org/portal',
         };
 
         const portalUrl = portalUrls[designationId];
 
-        const labelId = 'NVContributionForm' + window.formID + '-AdditionalInformation-' + window.additionalQuestion[6].name + '-label';
+        const labelId = 'NVContributionForm' + window.formID + '-AdditionalInformation-' + window.additionalQuestion[4].name + '-label';
 
         const label = document.getElementById(labelId);
 
@@ -77,23 +75,17 @@
 
         const mainCopy = label.innerHTML || '';
 
-        const additionalCopy = `
-          You can cancel any time${
-            portalUrl
-              ? ` at <a href="${portalUrl}" target="_blank" rel="noopener noreferrer">${portalUrl}</a>.`
-              : '.'
-          }
-          You also acknowledge and agree to the full Terms of Service located at
-          <a href="https://www.wnet.org/about/terms-of-service/" target="_blank" rel="noopener noreferrer">
-            Terms of Service | The WNET Group
-          </a>.
-        `;
+        const termsOfServiceLinkDefault = '<a href="https://www.wnet.org/about/terms-of-service/" target="_blank" rel="noopener noreferrer">https://www.wnet.org/about/terms-of-service/</a>.';
+        const termsOfServiceLink = '<a href="https://www.wnet.org/about/terms-of-service/" target="_blank" rel="noopener noreferrer">Terms of Service | The WNET Group</a>.';
+        const defaultCopy = ` You can cancel at any time by emailing <a href="mailto:membership@wnet.org">membership@wnet.org</a> or by calling 212-560-2888. You also acknowledge and agree to the full Terms of Service located at ${termsOfServiceLinkDefault}`;
+        const portalCopy = ` You can cancel any time at <a href="${portalUrl}" target="_blank" rel="noopener noreferrer">${portalUrl}</a>. You also acknowledge and agree to the full Terms of Service located at ${termsOfServiceLink}`;
+        const additionalCopy = portalUrl ? portalCopy : defaultCopy;
 
         label.innerHTML = `${mainCopy} ${additionalCopy}`;
         label.dataset.autoRenewalCopyInjected = 'true';
 
-        console.log('Auto Renewal Subscription label updated for designationId:', designationId);
-        console.log('Auto Renewal Subscription label updated for designationName:', designationName);
+        // console.log('Auto Renewal Subscription label updated for designationId:', designationId);
+        // console.log('Auto Renewal Subscription label updated for designationName:', designationName);
         console.log('Auto Renewal Subscription label updated for designationOfficialName:', designationOfficialName);
 
           }
