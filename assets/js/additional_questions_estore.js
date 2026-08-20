@@ -2,7 +2,7 @@
 ******************
 ******************
 ***
-*** additional_questions_estore - 04/20/2026.01
+*** additional_questions_estore - 081826.01
 ***
 ******************
 ******************
@@ -33,22 +33,68 @@
         moveElement(emailOptIn, contactInfoField, 'insertAfter');
         moveElement(pbsStationOptIn, contactInfoField, 'insertAfter');
   
-       // Update the HTML content of the autoRenewal label element
-        let origText = $('#' + 'NVContributionForm' + formID + '-AdditionalInformation-' + additionalQuestion[6].name + '-label').html();
-        let autoRenewalLabel = $('#' + 'NVContributionForm' + formID + '-AdditionalInformation-' + additionalQuestion[6].name + '-label');
-        let additionalText = `<a href='mailto:membership@wnet.org'>membership@wnet.org</a> or by calling 212-560-2888.`;
-        let urlAdd = `You also acknowledge and agree to the full Terms of Service located at <a href='https://www.wnet.org/about/terms-of-service/' target='_blank'>https://www.wnet.org/about/terms-of-service/</a>`;
-        // Update the HTML content of the label element
-        autoRenewalLabel.html(origText + ' ' + additionalText + ' ' + urlAdd);
-  
-  
       }); // End of document ready
   
        return args;
   };
-  
+
   nvtag_callbacks.postRender.push(moveAQ);
-  
+
+      // Update Checkbox Label for Auto Renewal Subscription
+      const updateAutoRenewalSubscriptionLabel = function (args) {
+
+        if (args && args.thank === false) { // Check if we're not on the thank you page
+
+        if (!window.additionalQuestion || !window.additionalQuestion[6]) {
+          return args;
+        }
+
+        const designationId = args.form_definition.designation.designationId;
+        const designationName = args.form_definition.designation.name; // Assuming the designationId is stored in the name property
+        const designationOfficialName = args.form_definition.designation.officialName; // Assuming the designationId is stored in the name property
+        
+        const portalUrls = {
+          52: 'https://www.thirteen.org/portal',
+          51: 'https://www.wliw.org/portal',
+        };
+
+        const portalUrl = portalUrls[designationId];
+
+        const labelId = 'NVContributionForm' + window.formID + '-AdditionalInformation-' + window.additionalQuestion[6].name + '-label';
+
+        const label = document.getElementById(labelId);
+
+        if (!label) {
+          return args;
+        }
+
+        // Avoid appending the extra paragraph more than once if postRender fires repeatedly.
+        if (label.dataset.autoRenewalCopyInjected === 'true') {
+          return args;
+        }
+
+        const mainCopy = label.innerHTML || '';
+
+        const termsOfServiceLinkDefault = '<a href="https://www.wnet.org/about/terms-of-service/" target="_blank" rel="noopener noreferrer">https://www.wnet.org/about/terms-of-service/</a>.';
+        const termsOfServiceLink = '<a href="https://www.wnet.org/about/terms-of-service/" target="_blank" rel="noopener noreferrer">Terms of Service | The WNET Group</a>.';
+        const defaultCopy = ` You can cancel at any time by emailing <a href="mailto:membership@wnet.org">membership@wnet.org</a> or by calling 212-560-2888. You also acknowledge and agree to the full Terms of Service located at ${termsOfServiceLinkDefault}`;
+        const portalCopy = ` You can cancel any time at <a href="${portalUrl}" target="_blank" rel="noopener noreferrer">${portalUrl}</a>. You also acknowledge and agree to the full Terms of Service located at ${termsOfServiceLink}`;
+        const additionalCopy = portalUrl ? portalCopy : defaultCopy;
+
+        label.innerHTML = `${mainCopy} ${additionalCopy}`;
+        label.dataset.autoRenewalCopyInjected = 'true';
+
+        // console.log('Auto Renewal Subscription label updated for designationId:', designationId);
+        // console.log('Auto Renewal Subscription label updated for designationName:', designationName);
+        console.log('Auto Renewal Subscription label updated for designationOfficialName:', designationOfficialName);
+
+          }
+
+        return args;
+      };
+ 
+  nvtag_callbacks.postRender.push(updateAutoRenewalSubscriptionLabel);
+   
   const onLoadStatus = function(args) {
     let { formID, additionalQuestion } = initializeFormVariables(args);
     let frequencyValue = $('input[name="SelectedFrequency"]');
@@ -58,6 +104,7 @@
       let ccNumber = $('label.at-text.at-cc-number');
       let firstNameField = $('input[name="FirstName"]');
       let submitButton = $('input.at-submit.btn-at.btn-at-primary');
+
     // Function to handle frequency changes, this should detect on load if $('input[name="SelectedFrequency"]') is monthly or one-time. there should be conditionanl logic, if monthly is selected, have the autoChexBox checked and the submit button enabled. if one-time is selected, have the autoCheckBox unchecked. more logic will be added to this function later.
 
     function handleFrequencyChange() {
