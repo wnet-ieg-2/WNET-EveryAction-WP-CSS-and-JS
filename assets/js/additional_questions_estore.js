@@ -45,7 +45,7 @@
 
         if (args && args.thank === false) { // Check if we're not on the thank you page
 
-        if (!window.additionalQuestion || !window.additionalQuestion[4]) {
+        if (!window.additionalQuestion || !window.additionalQuestion[6]) {
           return args;
         }
 
@@ -60,7 +60,7 @@
 
         const portalUrl = portalUrls[designationId];
 
-        const labelId = 'NVContributionForm' + window.formID + '-AdditionalInformation-' + window.additionalQuestion[4].name + '-label';
+        const labelId = 'NVContributionForm' + window.formID + '-AdditionalInformation-' + window.additionalQuestion[6].name + '-label';
 
         const label = document.getElementById(labelId);
 
